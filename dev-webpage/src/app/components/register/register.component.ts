@@ -21,6 +21,23 @@ export class RegisterComponent {
     { label: 'State ID', value: 'State ID' },
     { label: 'Temporary Address', value: 'Temporary Address' }
   ];
+  workauths = [
+    { label: "OPT Master's", value: 'opt' },
+    { label: "i983 Master's", value: 'i983' },
+    { label: "CPT Master's", value: 'cpt' },
+    { label: "CAP H1B first time from India", value: 'cap' },
+    { label: "H1B", value: 'h1b' },
+    { label: "H4 EAD", value: 'h4ead' },
+    { label: "GC", value: 'gc' },
+    { label: "GC EAD", value: 'gcead' },
+    { label: "US Citizen", value: 'us' },
+  ];
+  showUscisFields: boolean = false;
+  showAttachmentFields = false;
+  showJobDuties= false;
+  showAttachmentField = false;
+  showAttachmentField1 = false;
+  showAttachmentField2 = true;
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
       fname: ['', Validators.required],
@@ -48,14 +65,68 @@ export class RegisterComponent {
       passportcountry: ['', Validators.required],
       passportpincode: ['', Validators.required],
       passportDocument: [null, Validators.required],
+      uname: ['', Validators.required],
+      ccomp: ['', Validators.required],
+      qualificationDocument: [null, Validators.required],
+      transcriptDocument: [null, Validators.required],
+      workauth: [null, Validators.required],
+      uscisNumber: ['', Validators.required],
+      validFrom: ['', Validators.required],
+      validTo: ['', Validators.required],
+      attachDoc:[null, Validators.required],
+      i20:[null, Validators.required],
+    CPTdoc:[null, Validators.required],
+    jobDuties: ['', Validators.required],
+    h1bdoc:[null, Validators.required],
+    i9doc:[null, Validators.required],
+    i94doc:[null, Validators.required],
     });
   }
-  ngOnInit() {  console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);}
-
+  ngOnInit() {  console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);
+  }
+ 
   onQualificationChange() {
     const qualificationValue = this.registerForm.get('qualification')?.value;
     console.log('Selected Qualification:', qualificationValue);  // Log the selected value
   }
+  onWorkAuthChange(event: any) {
+     const selectedValue = event.value;
+     console.log("Selected Work Authorization:", selectedValue);
+     if (selectedValue === 'h1b') {
+      // Show Job Duties field and one attachment for H1B
+      this.showUscisFields = false; 
+      this.showJobDuties = true; 
+      this.showAttachmentField = true;
+      this.showUscisFields = false;  // Hide USCIS fields for H1B
+      this.showAttachmentField1 = false; 
+    }
+     else if (selectedValue === 'cpt') {
+      this.showUscisFields = false;  
+      this.showAttachmentFields = true; 
+      this.showJobDuties = false;
+      this.showAttachmentField1 = false; 
+      this.showAttachmentField = false;
+    } 
+    else if (selectedValue === 'cap')
+    {
+      this.showUscisFields = false;  
+      this.showAttachmentFields = false; 
+      this.showJobDuties = true;
+      this.showAttachmentField1 = true; 
+      this.showAttachmentField = false;
+    }
+    else {
+      // For other work authorizations, show all fields
+      this.showUscisFields = ['opt', 'i983', 'h4ead', 'gc', 'gcead'].includes(selectedValue);
+      this.showAttachmentFields = false;  // Hide attachment fields for other options
+      this.showJobDuties = false;
+      this.showAttachmentField1 = false; 
+      this.showAttachmentField = false;
+    }
+
+  
+  }
+
   onIdentityTypeChange(event: any) {
     this.selectedIdentityType = event.value;
     if (this.selectedIdentityType === 'Temporary Address') {
