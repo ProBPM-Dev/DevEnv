@@ -1,12 +1,26 @@
+<header>
 <div class="page-header">
   <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo">
 
 </div>
-<div class="flex justify-content-center align-items-center min-h-screen">
-
-    <p-card header="Employee Details" [style]="{ width: '1000px' }" >
+<div class="top-right-corner">
+  <a href="" class="name-link" id="name1">Home</a>
+  <a href="" class="name-link" id="name2">About</a>
+  <a href="" class="name-link" id="name3">Contact</a>
+</div>
+</header>
+<div >
+    <p-card >
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="field-container"  style="display: flex; gap: 1rem;">
+        <div class="container">
+        
+        <div class="top-section">
+          <div class="top-header">
+            <h2>Personal Details</h2>
+          </div>
+          <div class="top-content">
+        
+        <div class="field-container" >
         <!-- First Name Field -->
         <div class="field" >
           <label for="fname" class="mandatory-label">First Name</label>
@@ -118,6 +132,15 @@
         Please enter a valid SSN number
       </small>
     </div>
+     
+  </div>
+  
+  </div>
+    <div class="bottom-section">
+      <div class="bottom-header">
+        <h2>Identity Details</h2>
+      </div>
+      <div class="bottom-content">
 
    <!-- Identity Type Dropdown -->
    <div class="field">
@@ -312,9 +335,17 @@
         required
       />
     </div>
-   
+
   </div>
-  <div class="field">
+</div>
+  </div>
+
+
+    <div class="bottom-section">
+      <div class="bottom-header">
+        <h2>Passport Details</h2>
+      </div>
+      <div class="bottom-content">
     <label for="passportNumber" class="mandatory-label">Passport Number</label>
     <input
       type="text"
@@ -325,8 +356,6 @@
       class="small-icon-input"
       required
     />
-  </div>
-
   <!-- Expiry Date -->
   <div class="field">
     <label for="passportexpiryDate" class="mandatory-label">Passport Expiry Date</label>
@@ -417,218 +446,256 @@
               class="w-full"
             />
           </div>
-      <!-- Qualification Field -->
-      <div class="field">
-        <label for="qualification" class="mandatory-label">Qualification</label>
-        <small class="form-description">(Eg: Bachelor's in CS or Master's in CS)</small>
-        <p-dropdown
-        [options]="qualifications"
-        formControlName="qualification"
-        placeholder="Select Qualification"
-        optionLabel="label"
-        class="w-full"
-        (onChange)="onQualificationChange()" 
-      ></p-dropdown>
-        <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
-          Qualification is required
-        </small>
-      </div>
-   <!-- University Name Field -->
-   <div class="field" >
-    <label for="uname" class="mandatory-label">University Name</label>
-    <input
-      type="text"
-      pInputText
-      formControlName="uname"
-      placeholder="Enter your university name"
-      id="uname"
-      class="small-icon-input"
-      required
-    />
-    <small *ngIf="registerForm.get('uname')?.invalid && registerForm.get('uname')?.touched" class="block p-error">
-     University Name is required
-    </small>
-  </div>    
-   <!-- Course Compeliton Field (DOB) -->
-<div class="field ">
-<label for="ccomp" class="mandatory-label">Course Compelition</label>
-<p-calendar
-  formControlName="ccomp"
-  id="ccomp"
-  dateFormat="mm/dd/yy"
-  [showIcon]="true"
-  placeholder="Select Course Compelition Date"
-  class="w-full"
-></p-calendar>
-<small *ngIf="registerForm.get('ccomp')?.invalid && registerForm.get('ccomp')?.touched" class="block p-error">
-  Course Compelition Date is required
-</small>
-</div>
-<!-- Qualification Document Upload -->
-<div class="field">
-<label for="qualificationDocument" class="mandatory-label">Attach Qualification Document</label>
-<input
-  type="file"
-  id="qualificationDocument"
-  formControlName="qualificationDocument"
-  accept="application/pdf, image/*"
-  (change)="onFileChange($event)"
-  class="w-full"
-/>
-</div>
-  <!-- Qualification Document Upload -->
-  <div class="field">
-    <label for="transcriptDocument" class="mandatory-label">Attach Transcripts Document</label>
-    <input
-      type="file"
-      id="transcriptDocument"
-      formControlName="transcriptDocument"
-      accept="application/pdf, image/*"
-      (change)="onFileChange($event)"
-      class="w-full"
-    />
+          </div>
   </div>
-               <!-- Work Auth Field -->
-       <div class="field">
-        <label for="workauth" class="mandatory-label">Work Authorization Status</label>
-        <p-dropdown
-        [options]="workauths"
-        formControlName="workauth"
-        placeholder="Select Work Authorization Status"
-        optionLabel="label"
+             <!-- Qualification Field -->
+             <div class="bottom-section">
+              <div class="bottom-header">
+                <h2>Academic Details</h2>
+              </div>
+              <div class="bottom-content">
+              <label for="qualification" class="mandatory-label">Qualification</label>
+              <p-dropdown
+              [options]="qualifications"
+              formControlName="qualification"
+              placeholder="Select Qualification"
+              optionLabel="label"
+              class="small-icon-input"
+              (onChange)="onQualificationChange()" 
+            ></p-dropdown>
+              <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
+                Qualification is required
+              </small>
+              <label for="Specialization" class="mandatory-label">Specialization</label>
+          
+              <p-dropdown
+              [options]="specializations"
+              formControlName="Specialization"
+              placeholder="Select Specialization"
+              optionLabel="label"
+              class="small-icon-input"
+            ></p-dropdown>
+              <small *ngIf="registerForm.get('Specialization')?.invalid && registerForm.get('Specialization')?.touched"  class="block p-error">
+                Specialization is required
+              </small>   
+         <!-- University Name Field -->
+         <div class="field" >
+          <label for="uname" class="mandatory-label">University Name</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="uname"
+            placeholder="Enter your university name"
+            id="uname"
+            class="small-icon-input"
+            required
+          />
+          <small *ngIf="registerForm.get('uname')?.invalid && registerForm.get('uname')?.touched" class="block p-error">
+           University Name is required
+          </small>
+        </div>    
+         <!-- Course Compeliton Field (DOB) -->
+    <div class="field ">
+      <label for="ccomp" class="mandatory-label">Course Compelition</label>
+      <p-calendar
+        formControlName="ccomp"
+        id="ccomp"
+        dateFormat="mm/dd/yy"
+        [showIcon]="true"
+        placeholder="Select Course Compelition Date"
         class="w-full"
-        (onChange)="onWorkAuthChange($event.value)" 
-      ></p-dropdown>
-        <small *ngIf="registerForm.get('workauth')?.invalid && registerForm.get('workauth')?.touched"  class="block p-error">
-          Work Authorization is required
-        </small>
+      ></p-calendar>
+      <small *ngIf="registerForm.get('ccomp')?.invalid && registerForm.get('ccomp')?.touched" class="block p-error">
+        Course Compelition Date is required
+      </small>
+    </div>
+     <!-- Qualification Document Upload -->
+     <div class="field">
+      <label for="qualificationDocument" class="mandatory-label">Attach Qualification Document</label>
+      <input
+        type="file"
+        id="qualificationDocument"
+        formControlName="qualificationDocument"
+        accept="application/pdf, image/*"
+        (change)="onFileChange($event)"
+        class="w-full"
+      />
+    </div>
+        <!-- Qualification Document Upload -->
+        <div class="field">
+          <label for="transcriptDocument" class="mandatory-label">Attach Transcripts Document</label>
+          <input
+            type="file"
+            id="transcriptDocument"
+            formControlName="transcriptDocument"
+            accept="application/pdf, image/*"
+            (change)="onFileChange($event)"
+            class="w-full"
+          />
+        </div>
       </div>
-<!-- Conditional Fields: USCIS Number, Valid From, Valid To, Attach Document -->
-<div *ngIf="showUscisFields">
-<div class="field">
-<label for="uscisNumber">USCIS Number</label>
-<input
-  type="text"
-  pInputText
-  formControlName="uscisNumber"
-  id="uscisNumber"
-  placeholder="Enter USCIS Number"
-  class="w-full"
-/>
-</div>
+      </div>
+  <!-- Work Auth Field -->
+                     <div class="bottom-section">
+                      <div class="bottom-header">
+                        <h2>Work Authorization</h2>
+                      </div>
+                      <div class="bottom-content">
+              <label for="workauth" class="mandatory-label">Work Authorization Status</label>
+              <p-dropdown
+              [options]="workauths"
+              formControlName="workauth"
+              placeholder="Select Work Authorization Status"
+              optionLabel="label"
+              class="w-full"
+              (onChange)="onWorkAuthChange($event.value)" 
+            ></p-dropdown>
+              <small *ngIf="registerForm.get('workauth')?.invalid && registerForm.get('workauth')?.touched"  class="block p-error">
+                Work Authorization is required
+              </small>
+            
+      <!-- Conditional Fields: USCIS Number, Valid From, Valid To, Attach Document -->
+  <div *ngIf="showUscisFields">
+    <div class="field">
+      <label for="uscisNumber">USCIS Number</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="uscisNumber"
+        id="uscisNumber"
+        placeholder="Enter USCIS Number"
+        class="w-full"
+      />
+    </div>
 
-<div class="field">
-<label for="validFrom">Valid From</label>
-<p-calendar
-  formControlName="validFrom"
-  id="validFrom"
-  dateFormat="mm/dd/yy"
-  placeholder="Select Start Date"
-  class="w-full"
-></p-calendar>
-</div>
+    <div class="field">
+      <label for="validFrom">Valid From</label>
+      <p-calendar
+        formControlName="validFrom"
+        id="validFrom"
+        dateFormat="mm/dd/yy"
+        placeholder="Select Start Date"
+        class="w-full"
+      ></p-calendar>
+    </div>
 
-<div class="field">
-<label for="validTo">Valid To</label>
-<p-calendar
-  formControlName="validTo"
-  id="validTo"
-  dateFormat="mm/dd/yy"
-  placeholder="Select End Date"
-  class="w-full"
-></p-calendar>
-</div>
+    <div class="field">
+      <label for="validTo">Valid To</label>
+      <p-calendar
+        formControlName="validTo"
+        id="validTo"
+        dateFormat="mm/dd/yy"
+        placeholder="Select End Date"
+        class="w-full"
+      ></p-calendar>
+    </div>
 
-<div class="field">
-<label for="attachDoc">Attach Document</label>
-<input
-  type="file"
-  pInputFile
-  formControlName="attachDoc"
-  id="attachDoc"
-  class="w-full"
-/>
-</div>
-</div>
-<div *ngIf="showAttachmentFields">
-<!-- First attachment field -->
-<div class="field">
-<label for="i20">i20 Document </label>
-<input
-  type="file"
-  pInputText
-  formControlName="i20"
-  id="i20"
-  class="w-full"
-/>
-</div>
-
-<!-- Second attachment field -->
-<div class="field">
-<label for="CPTdoc">CPT Document </label>
-<input
-  type="file"
-  pInputText
-  formControlName="CPTdoc"
-  id="CPTdoc"
-  class="w-full"
-/>
-</div>
-</div>  
-<div *ngIf="showJobDuties">
-<div class="field">
-<label for="jobDuties">Job Duties</label>
-<textarea
-  formControlName="jobDuties"
-  id="jobDuties"
-  rows="5"
-  placeholder="Enter Job Duties"
-  class="w-full"
-></textarea>
-</div>
-</div>
-
-<!-- Conditional Attachment Field for H1B -->
-<div *ngIf="showAttachmentField">
-<div class="field">
-<label for="h1bdoc">Attach 797A Document</label>
-<input
-  type="file"
-  pInputText
-  formControlName="h1bdoc"
-  id="h1bdoc"
-  class="w-full"
-/>
-</div>
-</div>
-<div *ngIf="showAttachmentField1">
-<div class="field">
-<label for="i94doc">Attach i94 Document</label>
-<input
-  type="file"
-  pInputText
-  formControlName="i94doc"
-  id="i94doc"
-  class="w-full"
-/>
-</div>
-</div>
-<div *ngIf="showAttachmentField2">
-<div class="field">
-<label for="i9doc">Attach i9 Document</label>
-<input
-  type="file"
-  pInputText
-  formControlName="i9doc"
-  id="i9doc"
-  class="w-full"
-/>
-</div>
-</div>
-
-<br><br>
-  <p-button label="Register" styleClass="small-button" type="submit"></p-button>
-     </form>
+    <div class="field">
+      <label for="attachDoc">Attach Document</label>
+      <input
+        type="file"
+        pInputFile
+        formControlName="attachDoc"
+        id="attachDoc"
+        class="w-full"
+      />
+    </div>
+  </div>
+  <div *ngIf="showAttachmentFields">
+    <!-- First attachment field -->
+    <div class="field">
+      <label for="i20">i20 Document </label>
+      <input
+        type="file"
+        pInputText
+        formControlName="i20"
+        id="i20"
+        class="w-full"
+      />
+    </div>
+  
+    <!-- Second attachment field -->
+    <div class="field">
+      <label for="CPTdoc">CPT Document </label>
+      <input
+        type="file"
+        pInputText
+        formControlName="CPTdoc"
+        id="CPTdoc"
+        class="w-full"
+      />
+    </div>
+  </div>  
+  <div *ngIf="showJobDuties">
+    <div class="field">
+      <label for="jobDuties">Job Duties</label>
+      <textarea
+        formControlName="jobDuties"
+        id="jobDuties"
+        rows="5"
+        placeholder="Enter Job Duties"
+        class="w-full"
+      ></textarea>
+    </div>
+  </div>
+  
+  <!-- Conditional Attachment Field for H1B -->
+  <div *ngIf="showAttachmentField">
+    <div class="field">
+      <label for="h1bdoc">Attach 797A Document</label>
+      <input
+        type="file"
+        pInputText
+        formControlName="h1bdoc"
+        id="h1bdoc"
+        class="w-full"
+      />
+    </div>
+  </div>
+  <div *ngIf="showAttachmentField1">
+    <div class="field">
+      <label for="i94doc">Attach i94 Document</label>
+      <input
+        type="file"
+        pInputText
+        formControlName="i94doc"
+        id="i94doc"
+        class="w-full"
+      />
+    </div>
+  </div>
+  <div *ngIf="showAttachmentField2">
+    <div class="field">
+      <label for="i9doc">Attach i9 Document</label>
+      <input
+        type="file"
+        pInputText
+        formControlName="i9doc"
+        id="i9doc"
+        class="w-full"
+      />
+    </div>
+  </div>
+  </div></div>
+  <br><br>
+        <p-button label="Register" styleClass="small-button" type="submit"></p-button>
+      </div>
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+          </div>
+          <div class="footer-center">
+            <ul class="footer-links">
+              <li><a href="#">Home</a>     <a href="#">About Us</a> <a href="#">Services</a>
+              <a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      </form>
     </p-card>   
   </div>
+
+
   

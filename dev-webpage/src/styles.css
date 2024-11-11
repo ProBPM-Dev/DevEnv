@@ -6,44 +6,14 @@ html,
 body{
     height : 100%;
     margin: 0;
-    .page-header {
-        background-color: white;  /* Violet background color for the header */
-       
-        color: white;  /* White font color */
-        text-align: left;  /* Center the text */
-        padding: 10px 0;  /* Add some padding for spacing */
-      }
-      
-      .page-header h1 {
-        margin: 0;  /* Remove default margin for the header */
-        font-size: 2rem;  /* Adjust font size as needed */
-        font-weight: bold;  /* Make the font bold */
-      }
 
-.logo {
-    height: 165px; /* Adjusts the logo size */
-    width: auto; /* Maintains aspect ratio */
-  }
 
     .small-button {
         width: 120px; /* Set to desired width */
       }
 
-
-      /* Container to arrange the fields in a row */
-
-  
-  /* Ensure label and field are aligned in a row */
-  .field {
-    display: flex;
-    flex-direction: column; /* Stack label on top of the input field */
-    width: 50%; /* Adjust this width for two fields in a row, you can modify this value */
-  }
-  
   /* Space between label and input field */
-  .field label {
-    margin-bottom: 0.5rem; /* Adjust the space between label and field */
-  }
+
   
   /* Style for the small-icon-input */
   .small-icon-input {

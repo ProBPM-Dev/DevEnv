@@ -16,6 +16,11 @@ export class RegisterComponent {
     { label: "Master's", value: 'master' },
     { label: 'PhD', value: 'phd' },
   ];
+  specializations=[
+    { label: "Computer Science", value: 'cs' },
+    { label: "Electronics & Communication", value: 'ece' },
+    { label: 'Other', value: 'other' },
+  ];
   identityTypes = [
     { label: 'Driving License', value: 'Driving License' },
     { label: 'State ID', value: 'State ID' },
@@ -80,6 +85,7 @@ export class RegisterComponent {
     h1bdoc:[null, Validators.required],
     i9doc:[null, Validators.required],
     i94doc:[null, Validators.required],
+    specialization: [null, Validators.required],
     });
   }
   ngOnInit() {  console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);
