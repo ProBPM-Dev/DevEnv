@@ -335,4 +335,29 @@ margin-top: 5px;  /* Space between label and description */
     color: #FF6F61; /* Highlight color when clicked */
     transform: translateY(2px); /* Slightly shift down on click */
   }
-  
+  /* Make the entire navbar sticky */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures it stays on top */
+  background-color: #fff; /* Background color of the navbar */
+  box-shadow: 0 4px 2px -2px gray; /* Optional: Adds a shadow effect */
+}
+
+/* Optional: Styling the logo for better alignment */
+.navbar-brand img {
+  height: 100px;
+  width: 150px;
+}
+
+/* Optional: Styling for the navbar items */
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Adds space between nav items */
+}
+
+/* If you want to change the background color of the header */
+.header {
+  background-color: #555; /* Change as per your theme */
+  color: #f1f1f1;
+  padding: 10px 16px;
+}
