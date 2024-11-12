@@ -1,17 +1,14 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
     margin: 10;
     padding: 0;
     font-family: 'Arial', sans-serif; /* Improved typography */
   }
   /* Page header styles */
   .pag-header {
-    position: fixed;
-    top: 10px; /* Distance from the top */
-    left: 20px; /* Distance from the left (adjust as needed) */
-    z-index: 1000; 
-    display: flex;
-    justify-content: left; /* Centers the logo horizontally */
+
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;  /* Centers the logo horizontally */
     align-items: left; /* Centers the logo vertically */
     padding: 10px ;
     background-color: #ffffff ; /* Light Purple background */
@@ -19,8 +16,82 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for more depth */
     margin-bottom: 10px; /* Space below the header */
     transition: all 0.3s ease; /* Smooth transition for hover effects */
-    max-width: 100%; /* Ensure it stretches across the page */
+    max-width: 90%; /* Ensure it stretches across the page */
   }
+  
+  .small-button {
+    width: 150px; /* Set to desired width */
+  }
+  .field-container {
+    display: grid;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adjust space between the fields */
+    align-items: center; /* Align fields in the center vertically */
+  }
+  .btn-wide {
+    height: 80%; /* Ensures the button takes the full height of its container */
+    width: 8%; /* Takes up 5% of the width of its container */
+    min-width: 60px; /* Ensures the button doesn't shrink too small */
+  }
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  /* Ensure label and field are aligned in a row */
+  .field {
+    display: grid;
+    flex-direction: column; /* Stack label on top of the input field */
+    width: 100%; /* Adjust this width for two fields in a row, you can modify this value */
+  }
+  .field .pi {
+    font-size: 1rem; /* Adjust size as needed */
+    color: #333; /* Adjust color if needed */
+  }
+  .flex {
+    display: flex;
+  }
+  
+  .align-items-center {
+    align-items: center; /* Vertically centers items */
+  }
+  
+
+  
+  .radio-group {
+    display: flex;
+    gap: 1rem; /* Space between individual radio buttons */
+  }
+  
+  /* Space between label and input field */
+  .field label {
+    margin-bottom: 0.5rem; /* Adjust the space between label and field */
+  }
+  .small-icon-input {
+    width: 400px; /* Adjust width as per your requirement */
+    font-size: 25px; /* Adjust font size */
+  }
+  
+  /* Target icon size inside the input fields */
+  .small-icon-input ::ng-deep .pi {
+    font-size: 0.8em; /* Reduce icon size */
+    width: 1em;
+    height: 1em;
+  }
+  
+  /* Optional: Adjust padding for space around icon */
+  .small-icon-input.p-inputtext {
+    padding-right: 2rem; /* Space for icon */
+  }
+.mandatory-label::after {
+content: " *"; /* Add a star after the label */
+color: red; /* Red color for the * symbol */
+font-weight: bold; /* Bold the star */
+}
+.form-description {
+font-size: 0.875rem;  /* Smaller font size */
+color: #6c757d;  /* Light gray color */
+margin-top: 5px;  /* Space between label and description */
+}
   
  
   
@@ -72,7 +143,7 @@
     grid-template-rows: auto 1fr; 
     align-items: center;
     background-color: #f8f8f8; /* Light gray background */
-    padding: 30px;
+    padding: 0px;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
     transition: all 0.3s ease;
@@ -126,7 +197,7 @@
     display: grid;
     grid-template-rows: auto 1fr; /* Split bottom-section into header and content */
     background-color: #f8f8f8;
-    padding: 30px;
+    padding: 0px;
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
     border: 2px solid #ddd; /* Border around the bottom section box */
@@ -212,25 +283,21 @@
     }
   }
   
-  .hero-section h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
+
   
   .footer {
-    background-color: #6a11cb; /* Matching background color to header */
+    
     color: white;
-    padding: 10px;
+
     text-align: center;
     font-size: 1rem;
-    border-radius: 15px;
-    margin-top: 40px;
+ 
   }
   
   .footer a {
     color: #fff;
     text-decoration: none;
-    margin: 0 10px;
+ 
     transition: color 0.3s ease;
   }
   

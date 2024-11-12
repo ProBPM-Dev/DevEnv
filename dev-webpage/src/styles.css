@@ -7,32 +7,5 @@ body{
     height : 100%;
     margin: 0;
 
-
-    .small-button {
-        width: 120px; /* Set to desired width */
-      }
-
-  /* Space between label and input field */
-
-  
-  /* Style for the small-icon-input */
-  .small-icon-input {
-    width: 80%; /* Ensures the input takes up the full width of its container */
-    font-size: 14px; /* Adjust font size as needed */
-  }
-  
-  /* Adjust icon size */
-  .small-icon-input .pi {
-    font-size: 0.8em; /* Adjust icon size */
-  }
-  .mandatory-label::after {
-    content: " *"; /* Add a star after the label */
-    color: red; /* Red color for the * symbol */
-    font-weight: bold; /* Bold the star */
-  }
-  .form-description {
-    font-size: 0.875rem;  /* Smaller font size */
-    color: #6c757d;  /* Light gray color */
-    margin-top: 5px;  /* Space between label and description */
-  }
 }
+

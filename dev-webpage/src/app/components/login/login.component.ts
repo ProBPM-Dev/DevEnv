@@ -5,6 +5,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone:true,
@@ -29,4 +30,5 @@ export class LoginComponent {
   onLogin() {
   console.log(this.login);
   }
+
 }

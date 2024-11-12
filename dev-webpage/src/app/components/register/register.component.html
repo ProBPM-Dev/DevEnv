@@ -1,20 +1,43 @@
-<header>
-<div class="page-header">
-  <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo">
+<!-- Bootstrap Navbar with Logo on the Left and Links on the Right -->
+<!-- In your index.html -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-</div>
-<div class="top-right-corner">
-  <a href="" class="name-link" id="name1">Home</a>
-  <a href="" class="name-link" id="name2">About</a>
-  <a href="" class="name-link" id="name3">Contact</a>
-</div>
-</header>
-<div >
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo on the Left -->
+    <a class="navbar-brand" href="#">
+      <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo" style="height: 100px; width: 150px;">
+    </a>
+
+    <!-- Toggler for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links aligned to the top-right -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="name1">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="name2">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="name3">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="align-items-center min-h-screen">
     <p-card >
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="container">
         
-        <div class="top-section">
+        <div *ngIf="currentSection === 1" class="top-section">
           <div class="top-header">
             <h2>Personal Details</h2>
           </div>
@@ -136,7 +159,7 @@
   </div>
   
   </div>
-    <div class="bottom-section">
+    <div *ngIf="currentSection === 2" class="bottom-section">
       <div class="bottom-header">
         <h2>Identity Details</h2>
       </div>
@@ -341,7 +364,7 @@
   </div>
 
 
-    <div class="bottom-section">
+    <div *ngIf="currentSection === 3" class="bottom-section">
       <div class="bottom-header">
         <h2>Passport Details</h2>
       </div>
@@ -449,7 +472,7 @@
           </div>
   </div>
              <!-- Qualification Field -->
-             <div class="bottom-section">
+             <div *ngIf="currentSection === 4" class="bottom-section">
               <div class="bottom-header">
                 <h2>Academic Details</h2>
               </div>
@@ -466,16 +489,18 @@
               <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
                 Qualification is required
               </small>
-              <label for="Specialization" class="mandatory-label">Specialization</label>
-          
+              <label for="specialization" class="mandatory-label">Specialization</label>
+        
+
+
               <p-dropdown
               [options]="specializations"
-              formControlName="Specialization"
-              placeholder="Select Specialization"
+              formControlName="specialization"
+              placeholder="Select specialization"
               optionLabel="label"
               class="small-icon-input"
             ></p-dropdown>
-              <small *ngIf="registerForm.get('Specialization')?.invalid && registerForm.get('Specialization')?.touched"  class="block p-error">
+              <small *ngIf="registerForm.get('specialization')?.invalid && registerForm.get('specialization')?.touched"  class="block p-error">
                 Specialization is required
               </small>   
          <!-- University Name Field -->
@@ -536,7 +561,7 @@
       </div>
       </div>
   <!-- Work Auth Field -->
-                     <div class="bottom-section">
+                     <div *ngIf="currentSection === 5" class="bottom-section">
                       <div class="bottom-header">
                         <h2>Work Authorization</h2>
                       </div>
@@ -677,25 +702,43 @@
     </div>
   </div>
   </div></div>
-  <br><br>
-        <p-button label="Register" styleClass="small-button" type="submit"></p-button>
+
+
+           <!-- Prev and Next Buttons -->
+           <div class="d-flex justify-content-between mt-4">
+            
+            <button *ngIf="currentSection > 1" type="button" class="btn btn-secondary btn-wide" (click)="prevSection()" [disabled]="currentSection === 1">
+               <i class="bi bi-chevron-left"></i> Prev   
+            </button>
+            <br><br>
+                   
+            <button *ngIf="currentSection < 5" type="button" class="btn btn-primary btn-wide" (click)="nextSection()" [disabled]="currentSection === 5">
+              Next <i class="bi bi-chevron-right"></i>  
+            </button>
+      
+            
+          </div>
+          <br><br>
+          <div *ngIf="currentSection === 5"   >
+            <label>
+              <input type="checkbox" />
+                I Agree that the given data is correct
+            </label>
+            <br><br>
+            <p-button label="Register" type="submit" ></p-button>
+          </div>
       </div>
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-left">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <footer >
+        <div >
+          <div class="bg-dark text-white text-center p-3">
+            <p>&copy; 2024 ProBPM Company. All rights reserved.</p>
           </div>
-          <div class="footer-center">
-            <ul class="footer-links">
-              <li><a href="#">Home</a>     <a href="#">About Us</a> <a href="#">Services</a>
-              <a href="#">Contact</a></li>
-            </ul>
-          </div>
+          
         </div>
       </footer>
+
       </form>
+     
     </p-card>   
   </div>
 
-
-  

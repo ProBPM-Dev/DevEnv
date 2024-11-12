@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent {
   specializations=[
     { label: "Computer Science", value: 'cs' },
     { label: "Electronics & Communication", value: 'ece' },
-    { label: 'Other', value: 'other' },
+    { label: "Other", value: 'other' },
   ];
   identityTypes = [
     { label: 'Driving License', value: 'Driving License' },
@@ -88,9 +89,38 @@ export class RegisterComponent {
     specialization: [null, Validators.required],
     });
   }
-  ngOnInit() {  console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);
+  currentSection$: Observable<number> = of(1); // Observable of the current section
+  currentSection: number = 1;  // Starting section value
+
+  ngOnInit() {
+    console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);
+    // Subscribe to the observable to keep currentSection updated
+    this.currentSection$.subscribe((section: number) => {
+      this.currentSection = section;
+    });
   }
- 
+
+
+  // Function to go to the next section
+  nextSection() {
+    if (this.currentSection < 5) {  // Assuming you have only 2 sections
+      this.currentSection++;
+      this.updateCurrentSection();
+    }
+  }
+
+  // Function to go to the previous section
+  prevSection() {
+    if (this.currentSection > 1) {  // Assuming you have only 2 sections
+      this.currentSection--;
+      this.updateCurrentSection();
+    }
+  }
+
+  // Function to update the current section (you may also notify a service here)
+  updateCurrentSection() {
+    this.currentSection$ = of(this.currentSection);  // Update the observable
+  }
   onQualificationChange() {
     const qualificationValue = this.registerForm.get('qualification')?.value;
     console.log('Selected Qualification:', qualificationValue);  // Log the selected value
@@ -101,10 +131,10 @@ export class RegisterComponent {
      if (selectedValue === 'h1b') {
       // Show Job Duties field and one attachment for H1B
       this.showUscisFields = false; 
+      this.showAttachmentFields = false;  // Hide USCIS fields for H1B
+      this.showAttachmentField1 = false; 
       this.showJobDuties = true; 
       this.showAttachmentField = true;
-      this.showUscisFields = false;  // Hide USCIS fields for H1B
-      this.showAttachmentField1 = false; 
     }
      else if (selectedValue === 'cpt') {
       this.showUscisFields = false;  

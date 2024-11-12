@@ -13,8 +13,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { RadioButtonModule } from 'primeng/radiobutton'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
-  declarations: [  AppComponent, RegisterComponent ],
+  declarations: [  AppComponent, RegisterComponent, FooterComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
