@@ -15,9 +15,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FooterComponent } from './footer/footer.component';
-
+import { SampleComponent } from './sample/sample.component';
+import { ProbpmEmpdataformComponent } from './components/probpm-empdataform/probpm-empdataform.component';
 @NgModule({
-  declarations: [  AppComponent, RegisterComponent, FooterComponent ],
+  declarations: [  AppComponent, RegisterComponent, FooterComponent, SampleComponent, ProbpmEmpdataformComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

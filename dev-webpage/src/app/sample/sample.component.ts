@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-sample',
+  templateUrl: './sample.component.html',
+  styleUrls: ['./sample.component.css']
 })
-export class RegisterComponent {
+export class SampleComponent implements OnInit {
+
   selectedIdentityType: string = '';
   selectedFile: File | null = null;
-  registerForm: FormGroup;
+  sampleForm: FormGroup;
   genders = ['Male', 'Female', 'Other'];
   qualifications = [
     { label: "Bachelor's", value: 'bachelor' },
@@ -45,7 +45,7 @@ export class RegisterComponent {
   showAttachmentField1 = false;
   showAttachmentField2 = true;
   constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
+    this.sampleForm = this.fb.group({
       fname: ['', Validators.required],
       mname: ['', Validators.required],
       lname: ['', [Validators.required]],
@@ -87,114 +87,115 @@ export class RegisterComponent {
     i9doc:[null, Validators.required],
     i94doc:[null, Validators.required],
     specialization: [null, Validators.required],
-    });
+      });
   }
-  currentSection$: Observable<number> = of(1); // Observable of the current section
-  currentSection: number = 1;  // Starting section value
-
-  ngOnInit() {
-    console.log('Initial Qualification Value:', this.registerForm.get('qualification')?.value);
-    // Subscribe to the observable to keep currentSection updated
-    this.currentSection$.subscribe((section: number) => {
-      this.currentSection = section;
-    });
-  }
-
-
-  // Function to go to the next section
-  nextSection() {
-    if (this.currentSection < 5) {  // Assuming you have only 2 sections
-      this.currentSection++;
-      this.updateCurrentSection();
-    }
-  }
-
-  // Function to go to the previous section
-  prevSection() {
-    if (this.currentSection > 1) {  // Assuming you have only 2 sections
-      this.currentSection--;
-      this.updateCurrentSection();
-    }
-  }
-
-  // Function to update the current section (you may also notify a service here)
-  updateCurrentSection() {
-    this.currentSection$ = of(this.currentSection);  // Update the observable
-  }
-  onQualificationChange() {
-    const qualificationValue = this.registerForm.get('qualification')?.value;
-    console.log('Selected Qualification:', qualificationValue);  // Log the selected value
-  }
-  onWorkAuthChange(event: any) {
-     const selectedValue = event.value;
-     console.log("Selected Work Authorization:", selectedValue);
-     if (selectedValue === 'h1b') {
-      // Show Job Duties field and one attachment for H1B
-      this.showUscisFields = false; 
-      this.showAttachmentFields = false;  // Hide USCIS fields for H1B
-      this.showAttachmentField1 = false; 
-      this.showJobDuties = true; 
-      this.showAttachmentField = true;
-    }
-     else if (selectedValue === 'cpt') {
-      this.showUscisFields = false;  
-      this.showAttachmentFields = true; 
-      this.showJobDuties = false;
-      this.showAttachmentField1 = false; 
-      this.showAttachmentField = false;
-    } 
-    else if (selectedValue === 'cap')
-    {
-      this.showUscisFields = false;  
-      this.showAttachmentFields = false; 
-      this.showJobDuties = true;
-      this.showAttachmentField1 = true; 
-      this.showAttachmentField = false;
-    }
-    else {
-      // For other work authorizations, show all fields
-      this.showUscisFields = ['opt', 'i983', 'h4ead', 'gc', 'gcead'].includes(selectedValue);
-      this.showAttachmentFields = false;  // Hide attachment fields for other options
-      this.showJobDuties = false;
-      this.showAttachmentField1 = false; 
-      this.showAttachmentField = false;
-    }
-
-  
-  }
-
   onIdentityTypeChange(event: any) {
     this.selectedIdentityType = event.value;
     if (this.selectedIdentityType === 'Temporary Address') {
       // Clear identity number for Temporary Address
-      this.registerForm.get('identityNumber')?.clearValidators();
+      this.sampleForm.get('identityNumber')?.clearValidators();
     } else {
-      this.registerForm.get('identityNumber')?.setValidators([Validators.required]);
+      this.sampleForm.get('identityNumber')?.setValidators([Validators.required]);
     }
-    this.registerForm.get('identityNumber')?.updateValueAndValidity();
+    this.sampleForm.get('identityNumber')?.updateValueAndValidity();
   }
   onFileChange(event: any) {
     const file = event.target.files[0];  // Get the first selected file
     if (file) {
       this.selectedFile = file;  // Store the selected file in the component
       console.log('Selected file:', file);
+    }}
+    currentSection$: Observable<number> = of(1); // Observable of the current section
+  currentSection: number = 1;  // Starting section value
+
+    ngOnInit(): void {
+      console.log('Initial Qualification Value:', this.sampleForm.get('qualification')?.value);
+      // Subscribe to the observable to keep currentSection updated
+      this.currentSection$.subscribe((section: number) => {
+        this.currentSection = section;
+      });
     }
-  }
-  onSubmit() {
-    if (this.registerForm.valid) {
+    nextSection() {
+      if (this.currentSection < 5) {  // Assuming you have only 2 sections
+        this.currentSection++;
+        this.updateCurrentSection();
+      }
+    }
+  
+    // Function to go to the previous section
+    prevSection() {
+      if (this.currentSection > 1) {  // Assuming you have only 2 sections
+        this.currentSection--;
+        this.updateCurrentSection();
+      }
+    }
+  
+    updateCurrentSection() {
+      this.currentSection$ = of(this.currentSection);  // Update the observable
+    }
+    onQualificationChange() {
+      const qualificationValue = this.sampleForm.get('qualification')?.value;
+      console.log('Selected Qualification:', qualificationValue);  // Log the selected value
+    }
+    onWorkAuthChange(event: any) {
+       const selectedValue = event.value;
+       console.log("Selected Work Authorization:", selectedValue);
+       if (selectedValue === 'h1b') {
+        // Show Job Duties field and one attachment for H1B
+        this.showUscisFields = false; 
+        this.showAttachmentFields = false;  // Hide USCIS fields for H1B
+        this.showAttachmentField1 = false; 
+        this.showJobDuties = true; 
+        this.showAttachmentField = true;
+      }
+       else if (selectedValue === 'cpt') {
+        this.showUscisFields = false;  
+        this.showAttachmentFields = true; 
+        this.showJobDuties = false;
+        this.showAttachmentField1 = false; 
+        this.showAttachmentField = false;
+      } 
+      else if (selectedValue === 'cap')
+      {
+        this.showUscisFields = false;  
+        this.showAttachmentFields = false; 
+        this.showJobDuties = true;
+        this.showAttachmentField1 = true; 
+        this.showAttachmentField = false;
+      }
+      else {
+        // For other work authorizations, show all fields
+        this.showUscisFields = ['opt', 'i983', 'h4ead', 'gc', 'gcead'].includes(selectedValue);
+        this.showAttachmentFields = false;  // Hide attachment fields for other options
+        this.showJobDuties = false;
+        this.showAttachmentField1 = false; 
+        this.showAttachmentField = false;
+      } 
+    
+    }
+    
+    onSubmit() { console.log(this.sampleForm.value);
+      
       const formData = new FormData();
+     
+
         // Append all form fields to FormData
-        Object.keys(this.registerForm.controls).forEach((key) => {
-          formData.append(key, this.registerForm.get(key)?.value);
+        Object.keys(this.sampleForm.controls).forEach((key) => {
+          formData.append(key, this.sampleForm.get(key)?.value);
         });
     
         // Debugging: Log FormData entries
         for (const [key, value] of (formData as any).entries()) {
           console.log(`${key}: ${value}`);
-        } }
+        } 
+        if (this.sampleForm.valid) {}
         else {
-      this.registerForm.markAllAsTouched();
+      this.sampleForm.markAllAsTouched();
     }
 
   }
-}
+  }
+  
+  
+
+
