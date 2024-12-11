@@ -1,717 +1,824 @@
-<!-- Bootstrap Navbar with Logo on the Left and Links on the Right -->
-<!-- In your index.html -->
+<!DOCTYPE html>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <!-- Logo on the Left -->
-    <a class="navbar-brand" href="#">
-      <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo" style="height: 120px; width: 150px;">
-    </a>
-
-    <!-- Toggler for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navigation Links aligned to the top-right -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="name1">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="name2">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="name3">Contact</a>
-        </li>
-      </ul>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive UI Template with Sticky Header</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <style>
+        .form-label.mandatory-label {
+            font-size: 1rem; /* Adjust size as needed */
+            color: #333; /* Adjust color if needed */
+        }
+    </style>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo" style="height: 120px; width: 150px;">
+          </a>
+      
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
-<div>
-<div class="align-items-center ">
+<!-- Sticky Header Section -->
+<header class="bg-primary text-center py-5 ">
+    <div class="container">
+        <h1>Welcome to Onboarding Employee Portal!</h1>
+        <p class="lead">We’re excited to have you onboard! This platform is designed to make collecting and managing employee details simple and secure.</p>
+    </div>
+</header>
+
+<!-- Main Content -->
+
     <p-card >
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="container">
-        
-        <div *ngIf="currentSection === 1" class="top-section">
-          <div class="top-header">
-            <h2>Personal Details</h2>
-          </div>
-          <div class="top-content">
-        
-            <div class="row">
-              <!-- First Name Field -->
-              <div class="col-md-4 mb-3">
-                <label for="fname" class="form-label mandatory-label">First Name</label>
-                <input type="text" pInputText formControlName="fname" placeholder="Enter your first name" id="fname" 
-                       class="form-control" required />
-                <small *ngIf="registerForm.get('fname')?.invalid && registerForm.get('fname')?.touched" class="text-danger">
-                  First Name is required
-                </small>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    
+          <div *ngIf="currentSection === 1" class="top-section">
+      
+        <!-- Left Column -->
+         
+            <div class="top-header">
+                <h2>Personal Details</h2>
               </div>
-        
-              <!-- Middle Name Field -->
-              <div class="col-md-4 mb-3">
-                <label for="mname" class="form-label">Middle Name</label>
-                <input type="text" pInputText formControlName="mname" placeholder="Enter your middle name" id="mname" 
-                       class="form-control" />
-              </div>
-        
-              <!-- Last Name Field -->
-              <div class="col-md-4 mb-3">
-                <label for="lname" class="form-label mandatory-label">Last Name</label>
-                <input type="text" pInputText formControlName="lname" placeholder="Enter your last name" id="lname" 
-                       class="form-control" required />
-                <small *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
-                  Last Name is required
-                </small>
-              </div>
-            </div>
-        
-            <div class="row">
-              <!-- Gender Field -->
-              <div class="col-md-4 mb-4">
-                <label class="form-label mandatory-label">Gender</label>
-                <div class="d-flex gap-2">
-                  <div *ngFor="let gender of ['Male', 'Female', 'Others']">
-                    <p-radioButton formControlName="gender" [inputId]="gender" [value]="gender" label="{{ gender }}"></p-radioButton>
+             
+              <div class="top-content">
+            
+        <div class="row">
+
+                  <!-- First Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="fname" class="form-label mandatory-label">First Name</label>
+                    <input type="text" pInputText formControlName="fname" placeholder="Enter your first name" id="fname" 
+                           class="form-control" required />
+                    <small *ngIf="registerForm.get('fname')?.invalid && registerForm.get('fname')?.touched" class="text-danger">
+                      First Name is required
+                    </small>
+                  </div>
+            
+                  <!-- Middle Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="mname" class="form-label">Middle Name</label>
+                    <input type="text" pInputText formControlName="mname" placeholder="Enter your middle name" id="mname" 
+                           class="form-control" />
+                  </div>
+            
+                  <!-- Last Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="lname" class="form-label mandatory-label">Last Name</label>
+                    <input type="text" pInputText formControlName="lname" placeholder="Enter your last name" id="lname" 
+                           class="form-control" required />
+                    <small *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
+                      Last Name is required
+                    </small>
                   </div>
                 </div>
-                <small *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="text-danger">
-                  Gender is required
-                </small>
-              </div>
-        
-              <!-- Date of Birth Field (DOB) -->
-              
-              <div class="col-md-4 mb-3">
-                <label for="dob" class="form-label mandatory-label">Date of Birth</label>
-                <br>
-                <!-- Removed form-control class here -->
-                <p-calendar 
-                  formControlName="dob" 
-                  id="dob" 
-                  dateFormat="mm/dd/yy" 
-                  [showIcon]="true" 
-                  placeholder="Select Date of Birth"
-                  class="w-100">
-                </p-calendar>
-                <br>
-                <small *ngIf="registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched" class="text-danger">
-                  Date of Birth is required
-                </small>
-              </div>
-              
-           
-        
-              <!-- Mobile Number Field -->
-              <div class="col-md-4 mb-3">
-                <label for="mobile" class="form-label mandatory-label">Mobile Number</label>
-                <input type="tel" pInputText formControlName="mobile" id="mobile" placeholder="Enter mobile number" 
-                       class="form-control" required pattern="[0-9]{10}" />
-                <small *ngIf="registerForm.get('mobile')?.invalid && registerForm.get('mobile')?.touched" class="text-danger">
-                  Please enter a valid mobile number
-                </small>
-              </div>
-        </div>
-        
+            
         <div class="row">
-              <!-- SSN Number Field -->
-              <div class="col-md-4 mb-3">
-                <label for="ssn" class="form-label mandatory-label">SSN Number</label>
-                <input type="tel" pInputText formControlName="ssn" id="ssn" placeholder="Enter SSN number (123-45-6789)" 
-                       class="form-control" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" />
-                <small *ngIf="registerForm.get('ssn')?.invalid && registerForm.get('ssn')?.touched" class="text-danger">
-                  Please enter a valid SSN number
-                </small>
-             </div>
+                  <!-- Gender Field -->
+                  <div class="col-md-4 mb-4">
+                    <label class="form-label mandatory-label">Gender</label>
+                    <div class="d-flex gap-2">
+                      <div *ngFor="let gender of ['Male', 'Female', 'Others']">
+                        <p-radioButton formControlName="gender" [inputId]="gender" [value]="gender" label="{{ gender }}"></p-radioButton>
+                      </div>
+                    </div>
+                    <small *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="text-danger">
+                      Gender is required
+                    </small>
+                  </div>
+            
+                  <!-- Date of Birth Field (DOB) -->
+                  
+                  <div class="col-md-4 mb-3">
+                    <label for="dob" class="form-label mandatory-label">Date of Birth</label>
+                    <br>
+                    <!-- Removed form-control class here -->
+                    <p-calendar 
+                      formControlName="dob" 
+                      id="dob" 
+                      dateFormat="mm/dd/yy" 
+                      [showIcon]="true" 
+                      placeholder="Select Date of Birth"
+                      class="w-100">
+                    </p-calendar>
+                    <br>
+                    <small *ngIf="registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched" class="text-danger">
+                      Date of Birth is required
+                    </small>
+                  </div>
+                  
+               
+            
+                  <!-- Mobile Number Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="mobile" class="form-label mandatory-label">Mobile Number</label>
+                    <input type="tel" pInputText formControlName="mobile" id="mobile" placeholder="Enter mobile number" 
+                           class="form-control" required pattern="[0-9]{10}" />
+                    <small *ngIf="registerForm.get('mobile')?.invalid && registerForm.get('mobile')?.touched" class="text-danger">
+                      Please enter a valid mobile number
+                    </small>
+                  </div>
             </div>
-      </div>
-        </div>
-         
-        
-    <div *ngIf="currentSection === 2" class="bottom-section">
-      <div class="bottom-header">
-        <h2>Identity Details</h2>
-      </div>
-      <div class="bottom-content">
+            
+        <div class="row">
+                  <!-- SSN Number Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="ssn" class="form-label mandatory-label">SSN Number</label>
+                    <input type="tel" pInputText formControlName="ssn" id="ssn" placeholder="Enter SSN number (123-45-6789)" 
+                           class="form-control" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" />
+                    <small *ngIf="registerForm.get('ssn')?.invalid && registerForm.get('ssn')?.touched" class="text-danger">
+                      Please enter a valid SSN number
+                    </small>
+                 </div>
+                </div>
+        </div>   
 
-   <!-- Identity Type Dropdown -->
-   <div class="field">
-    <label for="identityType" class="mandatory-label">Choose the below option</label>
-    <small class="form-description">Choose anyone of the option, if you don't have a driving license or a state ID, you can select a temporary address.</small>
-
-    <p-dropdown
-      formControlName="identityType"
-      id="identityType"
-      [options]="identityTypes"
-      placeholder="Select Identity Type"
-      (onChange)="onIdentityTypeChange($event)"
-      class="small-icon-input"
-    ></p-dropdown>
-   
-  </div>
-
-  <!-- Identity Proof Fields -->
-  <div *ngIf="selectedIdentityType !== 'Temporary Address'">
-    
-    <!-- Driving License or State ID -->
-    <div class="field">
-      <label for="identityNumber" class="mandatory-label">Identity Proof Number</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="identityNumber"
-        placeholder="Enter Identity Proof Number"
-        id="identityNumber"
-        class="small-icon-input"
-        required
-      />
-    </div>
-
-    <!-- Expiry Date -->
-    <div class="field">
-      <label for="expiryDate" class="mandatory-label">Expiry Date</label>
-      <p-calendar
-        formControlName="expiryDate"
-        id="expiryDate"
-        dateFormat="mm/dd/yy"
-        [showIcon]="true"
-        placeholder="Select Expiry Date"
-        class="small-icon-input"
-      ></p-calendar>
-    </div>
-    
-    <!-- Address Fields -->
-    <div class="field">
-      <label for="address" class="mandatory-label">Address</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="address"
-        id="address"
-        class="small-icon-input"
-        placeholder="Enter Address"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="city" class="mandatory-label">City</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="city"
-        id="city"
-        class="small-icon-input"
-        placeholder="Enter City"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="state" class="mandatory-label">State</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="state"
-        id="state"
-        class="small-icon-input"
-        placeholder="Enter State"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="country" class="mandatory-label">Country</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="country"
-        id="country"
-        class="small-icon-input"
-        placeholder="Enter Country"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="pincode" class="mandatory-label">Pincode</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="pincode"
-        id="pincode"
-        class="small-icon-input"
-        placeholder="Enter Pincode"
-        required
-      />
-    </div>
-             <!-- Identity Document Upload -->
-             <div class="field">
-              <label for="identityDocument" class="mandatory-label">Attach Identity Document</label>
-              <input
-                type="file"
-                id="identityDocument"
-                formControlName="identityDocument"
-                accept="application/pdf, image/*"
-                (change)="onFileChange($event)"
-                class="w-full"
-              />
-            </div>
-  </div>
-
-  <!-- Temporary Address Fields (when selected) -->
-  <div *ngIf="selectedIdentityType === 'Temporary Address'">
-    
-    <!-- Address Fields (same as above) -->
-    <div class="field">
-      <label for="address" class="mandatory-label">Address</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="address"
-        id="address"
-        class="small-icon-input"
-        placeholder="Enter Address"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="city" class="mandatory-label">City</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="city"
-        id="city"
-        class="small-icon-input"
-        placeholder="Enter City"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="state" class="mandatory-label">State</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="state"
-        id="state"
-        class="small-icon-input"
-        placeholder="Enter State"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="country" class="mandatory-label">Country</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="country"
-        id="country"
-        class="small-icon-input"
-        placeholder="Enter Country"
-        required
-      />
-    </div>
-
-    <div class="field">
-      <label for="pincode" class="mandatory-label">Pincode</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="pincode"
-        id="pincode"
-        class="small-icon-input"
-        placeholder="Enter Pincode"
-        required
-      />
-    </div>
-
-  </div>
 </div>
+     
+<div *ngIf="currentSection === 2" class="top-section">
+  <small *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
+    Last Name is required
+  </small>
+  <div class="top-header">
+    <h2>Identity Details</h2>
   </div>
+  <div class="top-content">
 
+<!-- Identity Type Dropdown -->
+<div class="row"> 
 
-    <div *ngIf="currentSection === 3" class="bottom-section">
-      <div class="bottom-header">
-        <h2>Passport Details</h2>
-      </div>
-      <div class="bottom-content">
-    <label for="passportNumber" class="mandatory-label">Passport Number</label>
+<label for="identityType" class="form-label mandatory-label">Choose the below option</label>
+<small class="form-description">Choose anyone of the option, if you don't have a driving license or a state ID, you can select a temporary address.</small>
+<div class="col-md-4 mb-3">
+<p-dropdown
+  formControlName="identityType"
+  id="identityType"
+  [options]="identityTypes"
+  placeholder="Select Identity Type"
+  (onChange)="onIdentityTypeChange($event)"
+  class="form-control"
+></p-dropdown>
+</div></div>
+
+<!-- Identity Proof Fields -->
+<div *ngIf="selectedIdentityType !== 'Temporary Address'">
+
+<!-- Driving License or State ID -->
+<div class="row">
+  <div class="col-md-4 mb-3">
+  <label for="identityNumber" class="form-label mandatory-label">Identity Proof Number</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="identityNumber"
+    placeholder="Enter Identity Proof Number"
+    id="identityNumber"
+    class="form-control"
+    required
+  />
+  <small *ngIf="registerForm.get('identityNumber')?.invalid && registerForm.get('identityNumber')?.touched" class="text-danger">
+    Please enter a valid Identity-Number 
+  </small>
+</div>
+
+<!-- Expiry Date -->
+<div class="col-md-4 mb-3">
+  <label for="expiryDate" class="form-label mandatory-label">Expiry Date</label>
+  <p-calendar
+    formControlName="expiryDate"
+    id="expiryDate"
+    dateFormat="mm/dd/yy"
+    [showIcon]="true"
+    placeholder="Select Expiry Date"
+    class="form-control"
+  ></p-calendar>
+  <small *ngIf="registerForm.get('expiryDate')?.invalid && registerForm.get('expiryDate')?.touched" class="text-danger">
+    Please enter a valid Expiry Date 
+  </small>
+</div>
+
+<!-- Address Fields -->
+<div class="col-md-4 mb-3">
+  <label for="address" class="form-label mandatory-label">Address</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="address"
+    id="address"
+    class="form-control"
+    placeholder="Enter Address"
+    required
+  />
+  <small *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched" class="text-danger">
+    Please enter a valid Address
+  </small>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 mb-3">
+  <label for="city" class="form-label mandatory-label">City</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="city"
+    id="city"
+    class="form-control"
+    placeholder="Enter City"
+    required
+  />
+  <small *ngIf="registerForm.get('city')?.invalid && registerForm.get('city')?.touched" class="text-danger">
+    Please enter a valid City
+  </small>
+</div>
+
+<div class="col-md-4 mb-3">
+  <label for="state" class="form-label mandatory-label">State</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="state"
+    id="state"
+    class="form-control"
+    placeholder="Enter State"
+    required
+  />
+  <small *ngIf="registerForm.get('state')?.invalid && registerForm.get('state')?.touched" class="text-danger">
+    Please enter a valid State
+  </small>
+</div>
+
+<div class="col-md-4 mb-3">
+  <label for="country" class="form-label mandatory-label">Country</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="country"
+    id="country"
+    class="form-control"
+    placeholder="Enter Country"
+    required
+  />
+  <small *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched" class="text-danger">
+    Please enter a valid Country
+  </small>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-4 mb-3">
+  <label for="pincode" class="form-label mandatory-label">Pincode</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="pincode"
+    id="pincode"
+    class="form-control"
+    placeholder="Enter Pincode"
+    required
+  />
+  <small *ngIf="registerForm.get('pincode')?.invalid && registerForm.get('pincode')?.touched" class="text-danger">
+    Please enter a valid Pincode
+  </small>
+</div>
+</div>
+         <!-- Identity Document Upload -->
+         <div class="row">  <div class="col-md-4 mb-3">
+        
+          <label for="identityDocument" class="form-label mandatory-label">Attach Identity Document</label>
+          <input
+            type="file"
+            id="identityDocument"
+            formControlName="identityDocument"
+            accept="application/pdf, image/*"
+            (change)="onFileChange($event)"
+            class="w-full"
+          />
+        </div>
+        </div>
+</div>
+
+<!-- Temporary Address Fields (when selected) -->
+<div *ngIf="selectedIdentityType === 'Temporary Address'">
+
+<!-- Address Fields (same as above) -->
+ <div class="row">
+<div class="col-md-4 mb-3">
+  <label for="address" class="form-label mandatory-label">Address</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="address"
+    id="address"
+    class="form-control"
+    placeholder="Enter Address"
+    required
+  />
+</div>
+<div class="col-md-4 mb-3">
+  <!-- Empty space -->
+</div>
+<div class="col-md-4 mb-3 ">
+  <label for="city" class="form-label mandatory-label">City</label>
     <input
-      type="text"
-      pInputText
-      formControlName="passportNumber"
-      placeholder="Enter Passport Number"
-      id="passportNumber"
-      class="small-icon-input"
-      required
-    />
-  <!-- Expiry Date -->
-  <div class="field">
-    <label for="passportexpiryDate" class="mandatory-label">Passport Expiry Date</label>
-    <p-calendar
-      formControlName="passportexpiryDate"
-      id="passportexpiryDate"
-      dateFormat="mm/dd/yy"
-      [showIcon]="true"
-      placeholder="Select Expiry Date"
-      class="small-icon-input"
-    ></p-calendar>
+    type="text"
+    pInputText
+    formControlName="city"
+    id="city"
+    class="form-control"
+    placeholder="Enter City"
+    required
+  />
+</div>
+</div>  
+<div class="row" >
+<div class="col-md-4 mb-3">
+  <label for="state" class="form-label mandatory-label">State</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="state"
+    id="state"
+    class="form-control"
+    placeholder="Enter State"
+    required
+  />
+</div>
+
+<div class="col-md-4 mb-3">
+  <label for="country" class="form-label mandatory-label">Country</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="country"
+    id="country"
+    class="form-control"
+    placeholder="Enter Country"
+    required
+  />
+</div>
+
+  <div class="col-md-4 mb-3">
+  <label for="pincode" class="form-label mandatory-label">Pincode</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="pincode"
+    id="pincode"
+    class="form-control"
+    placeholder="Enter Pincode"
+    required
+  />
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div *ngIf="currentSection === 3" class="top-section">
+  <div class="top-header">
+    <h2>Passport Details</h2>
   </div>
-  
-  <!-- Address Fields -->
-  <div class="field">
+  <div class="top-content">
+    <div class="row"> 
+      <!-- Passport Number -->
+      <div class="col-md-4 mb-3">
+      <label for="passportNumber" class="form-label mandatory-label">Passport Number</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="passportNumber"
+        placeholder="Enter Passport Number"
+        id="passportNumber"
+        class="form-control"
+        required
+      />
+      <small *ngIf="registerForm.get('passportNumber')?.invalid && registerForm.get('passportNumber')?.touched" class="text-danger">
+        Please enter a valid Passport-Number 
+      </small>
+</div>
+<div class="col-md-4 mb-3"></div>
+<!-- Expiry Date -->
+<div class="col-md-4 mb-3">
+<label for="passportexpiryDate" class="form-label mandatory-label">Passport Expiry Date</label>
+<p-calendar
+    formControlName="passportexpiryDate"
+    id="passportexpiryDate"
+    dateFormat="mm/dd/yy"
+    [showIcon]="true"
+    placeholder="Select Expiry Date"
+    class="form-control"
+  ></p-calendar>
+  <small *ngIf="registerForm.get('passportexpiryDate')?.invalid && registerForm.get('passportexpiryDate')?.touched" class="text-danger">
+    Please enter a valid Passport Expiry Date 
+  </small>
+</div>
+</div>
+
+<!-- Address Fields (same as above) -->
+<div class="row">
+  <div class="col-md-4 mb-3">
     <label for="passportaddress" class="mandatory-label">Address</label>
     <input
       type="text"
       pInputText
       formControlName="passportaddress"
       id="passportaddress"
-      class="small-icon-input"
+      class="form-control"
       placeholder="Enter Address"
       required
     />
+    <small *ngIf="registerForm.get('passportaddress')?.invalid && registerForm.get('passportaddress')?.touched" class="text-danger">
+      Please enter a valid Passport Address
+    </small>
   </div>
-
-  <div class="field">
+  <div class="col-md-4 mb-3">
+    <!-- Empty space -->
+  </div>
+  <div class="col-md-4 mb-3 ">
     <label for="passportcity" class="mandatory-label">City</label>
     <input
       type="text"
       pInputText
       formControlName="passportcity"
       id="passportcity"
-      class="small-icon-input"
+      class="form-control"
       placeholder="Enter City"
       required
     />
+    <small *ngIf="registerForm.get('passportcity')?.invalid && registerForm.get('passportcity')?.touched" class="text-danger">
+      Please enter a valid City
+    </small>
   </div>
-
-  <div class="field">
-    <label for="passportstate" class="mandatory-label">State</label>
+  </div>  
+  <div class="row" >
+  <div class="col-md-4 mb-3">
+    <label for="passportstate" class="form-label mandatory-label">State</label>
     <input
       type="text"
       pInputText
       formControlName="passportstate"
       id="passportstate"
-      class="small-icon-input"
+      class="form-control"
       placeholder="Enter State"
       required
     />
+    <small *ngIf="registerForm.get('passportstate')?.invalid && registerForm.get('passportstate')?.touched" class="text-danger">
+      Please enter a valid State 
+    </small>
   </div>
-
-  <div class="field">
-    <label for="passportcountry" class="mandatory-label">Country</label>
+  
+  <div class="col-md-4 mb-3">
+    <label for="passportcountry" class="form-label mandatory-label">Country</label>
     <input
       type="text"
       pInputText
       formControlName="passportcountry"
       id="passportcountry"
-      class="small-icon-input"
+      class="form-control"
       placeholder="Enter Country"
       required
     />
+    <small *ngIf="registerForm.get('passportcountry')?.invalid && registerForm.get('passportcountry')?.touched" class="text-danger">
+      Please enter a valid Country 
+    </small>
   </div>
-
-  <div class="field">
-    <label for="passportpincode" class="mandatory-label">Pincode</label>
-    <input
-      type="text"
-      pInputText
-      formControlName="passportpincode"
-      id="passportpincode"
-      class="small-icon-input"
-      placeholder="Enter Pincode"
-      required
-    />
-  </div>
-           <!-- Identity Document Upload -->
-           <div class="field">
-            <label for="passportDocument" class="mandatory-label">Attach Passport Document</label>
-            <input
-              type="file"
-              id="passportDocument"
-              formControlName="passportDocument"
-              accept="application/pdf, image/*"
-              (change)="onFileChange($event)"
-              class="w-full"
-            />
-          </div>
-          </div>
-  </div>
-             <!-- Qualification Field -->
-             <div *ngIf="currentSection === 4" class="bottom-section">
-              <div class="bottom-header">
-                <h2>Academic Details</h2>
-              </div>
-              <div class="bottom-content">
-              <label for="qualification" class="mandatory-label">Qualification</label>
-              <p-dropdown
-              [options]="qualifications"
-              formControlName="qualification"
-              placeholder="Select Qualification"
-              optionLabel="label"
-              class="small-icon-input"
-              (onChange)="onQualificationChange()" 
-            ></p-dropdown>
-              <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
-                Qualification is required
-              </small>
-              <label for="specialization" class="mandatory-label">Specialization</label>
-        
-
-
-              <p-dropdown
-              [options]="specializations"
-              formControlName="specialization"
-              placeholder="Select specialization"
-              optionLabel="label"
-              class="small-icon-input"
-            ></p-dropdown>
-              <small *ngIf="registerForm.get('specialization')?.invalid && registerForm.get('specialization')?.touched"  class="block p-error">
-                Specialization is required
-              </small>   
-         <!-- University Name Field -->
-         <div class="field" >
-          <label for="uname" class="mandatory-label">University Name</label>
-          <input
-            type="text"
-            pInputText
-            formControlName="uname"
-            placeholder="Enter your university name"
-            id="uname"
-            class="small-icon-input"
-            required
-          />
-          <small *ngIf="registerForm.get('uname')?.invalid && registerForm.get('uname')?.touched" class="block p-error">
-           University Name is required
-          </small>
-        </div>    
-         <!-- Course Compeliton Field (DOB) -->
-    <div class="field ">
-      <label for="ccomp" class="mandatory-label">Course Compelition</label>
-      <p-calendar
-        formControlName="ccomp"
-        id="ccomp"
-        dateFormat="mm/dd/yy"
-        [showIcon]="true"
-        placeholder="Select Course Compelition Date"
-        class="w-full"
-      ></p-calendar>
-      <small *ngIf="registerForm.get('ccomp')?.invalid && registerForm.get('ccomp')?.touched" class="block p-error">
-        Course Compelition Date is required
-      </small>
-    </div>
-     <!-- Qualification Document Upload -->
-     <div class="field">
-      <label for="qualificationDocument" class="mandatory-label">Attach Qualification Document</label>
-      <input
-        type="file"
-        id="qualificationDocument"
-        formControlName="qualificationDocument"
-        accept="application/pdf, image/*"
-        (change)="onFileChange($event)"
-        class="w-full"
-      />
-    </div>
-        <!-- Qualification Document Upload -->
-        <div class="field">
-          <label for="transcriptDocument" class="mandatory-label">Attach Transcripts Document</label>
-          <input
-            type="file"
-            id="transcriptDocument"
-            formControlName="transcriptDocument"
-            accept="application/pdf, image/*"
-            (change)="onFileChange($event)"
-            class="w-full"
-          />
-        </div>
-      </div>
-      </div>
-  <!-- Work Auth Field -->
-                     <div *ngIf="currentSection === 5" class="bottom-section">
-                      <div class="bottom-header">
-                        <h2>Work Authorization</h2>
-                      </div>
-                      <div class="bottom-content">
-              <label for="workauth" class="mandatory-label">Work Authorization Status</label>
-              <p-dropdown
-              [options]="workauths"
-              formControlName="workauth"
-              placeholder="Select Work Authorization Status"
-              optionLabel="label"
-              class="w-full"
-              (onChange)="onWorkAuthChange($event.value)" 
-            ></p-dropdown>
-              <small *ngIf="registerForm.get('workauth')?.invalid && registerForm.get('workauth')?.touched"  class="block p-error">
-                Work Authorization is required
-              </small>
-            
-      <!-- Conditional Fields: USCIS Number, Valid From, Valid To, Attach Document -->
-  <div *ngIf="showUscisFields">
-    <div class="field">
-      <label for="uscisNumber">USCIS Number</label>
+  
+    <div class="col-md-4 mb-3">
+      <label for="passportpincode" class="form-label mandatory-label">Pincode</label>
       <input
         type="text"
         pInputText
-        formControlName="uscisNumber"
-        id="uscisNumber"
-        placeholder="Enter USCIS Number"
-        class="w-full"
+        formControlName="passportpincode"
+        id="passportpincode"
+        class="form-control"
+        placeholder="Enter Pincode"
+        required
       />
-    </div>
-
-    <div class="field">
-      <label for="validFrom">Valid From</label>
-      <p-calendar
-        formControlName="validFrom"
-        id="validFrom"
-        dateFormat="mm/dd/yy"
-        placeholder="Select Start Date"
-        class="w-full"
-      ></p-calendar>
-    </div>
-
-    <div class="field">
-      <label for="validTo">Valid To</label>
-      <p-calendar
-        formControlName="validTo"
-        id="validTo"
-        dateFormat="mm/dd/yy"
-        placeholder="Select End Date"
-        class="w-full"
-      ></p-calendar>
-    </div>
-
-    <div class="field">
-      <label for="attachDoc">Attach Document</label>
-      <input
-        type="file"
-        pInputFile
-        formControlName="attachDoc"
-        id="attachDoc"
-        class="w-full"
-      />
-    </div>
+      <small *ngIf="registerForm.get('passportpincode')?.invalid && registerForm.get('passportpincode')?.touched" class="text-danger">
+        Please enter a valid Pincode 
+      </small>
   </div>
-  <div *ngIf="showAttachmentFields">
-    <!-- First attachment field -->
-    <div class="field">
-      <label for="i20">i20 Document </label>
-      <input
-        type="file"
-        pInputText
-        formControlName="i20"
-        id="i20"
-        class="w-full"
-      />
-    </div>
-  
-    <!-- Second attachment field -->
-    <div class="field">
-      <label for="CPTdoc">CPT Document </label>
-      <input
-        type="file"
-        pInputText
-        formControlName="CPTdoc"
-        id="CPTdoc"
-        class="w-full"
-      />
-    </div>
-  </div>  
-  <div *ngIf="showJobDuties">
-    <div class="field">
-      <label for="jobDuties">Job Duties</label>
-      <textarea
-        formControlName="jobDuties"
-        id="jobDuties"
-        rows="5"
-        placeholder="Enter Job Duties"
-        class="w-full"
-      ></textarea>
-    </div>
   </div>
-  
-  <!-- Conditional Attachment Field for H1B -->
-  <div *ngIf="showAttachmentField">
-    <div class="field">
-      <label for="h1bdoc">Attach 797A Document</label>
-      <input
-        type="file"
-        pInputText
-        formControlName="h1bdoc"
-        id="h1bdoc"
-        class="w-full"
-      />
-    </div>
-  </div>
-  <div *ngIf="showAttachmentField1">
-    <div class="field">
-      <label for="i94doc">Attach i94 Document</label>
-      <input
-        type="file"
-        pInputText
-        formControlName="i94doc"
-        id="i94doc"
-        class="w-full"
-      />
-    </div>
-  </div>
-  <div *ngIf="showAttachmentField2">
-    <div class="field">
-      <label for="i9doc">Attach i9 Document</label>
-      <input
-        type="file"
-        pInputText
-        formControlName="i9doc"
-        id="i9doc"
-        class="w-full"
-      />
-    </div>
-  </div>
-  </div></div>
-
-
-           <!-- Prev and Next Buttons -->
-           <div class="d-flex justify-content-between mt-4">
-            
-            <button *ngIf="currentSection > 1" type="button" class="btn btn-secondary btn-wide" (click)="prevSection()" [disabled]="currentSection === 1">
-               <i class="bi bi-chevron-left"></i> Prev   
-            </button>
-            <br><br>
-                   
-            <button *ngIf="currentSection < 5" type="button" class="btn btn-primary btn-wide" (click)="nextSection()" [disabled]="currentSection === 5">
-              Next <i class="bi bi-chevron-right"></i>  
-            </button>
-      
-            
-          </div>
-          <br><br>
-          <div *ngIf="currentSection === 5"   >
-            <label>
-              <input type="checkbox" />
-                I Agree that the given data is correct
-            </label>
-            <br><br>
-            <p-button label="Register" type="submit" ></p-button>
-          </div>
+       <!-- Identity Document Upload -->
+       <div class="row">
+        <div class="col-md-4 mb-3">
+        <label for="passportDocument" class="mandatory-label">Attach Passport Document</label>
+        <input
+          type="file"
+          id="passportDocument"
+          formControlName="passportDocument"
+          accept="application/pdf, image/*"
+          (change)="onFileChange($event)"
+          class="w-full"
+        />
+      </div></div>
       </div>
      
+</div>
 
-      </form>
-   
-    </p-card>   
+<!-- Qualification Field -->
+<div *ngIf="currentSection === 4" class="top-section">
+  <div class="top-header">
+    <h2>Academic Details</h2>
   </div>
-  <footer class="bg-dark text-white text-center py-3">
-    <div class="containers1">
+  <div class="top-content">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="qualification" class="form-label mandatory-label">Qualification</label>
+        <p-dropdown
+        [options]="qualifications"
+        formControlName="qualification"
+        placeholder="Select Qualification"
+        optionLabel="label"
+        class="form-control"
+        (onChange)="onQualificationChange()"
+></p-dropdown>
+  <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
+    Qualification is required
+  </small>
+  </div>
+  <div class="col-md-4 mb-3"></div>
+  <div class="col-md-4 mb-3">
+  <label for="specialization" class="form-label mandatory-label">Specialization</label>
+  <p-dropdown
+  [options]="specializations"
+  formControlName="specialization"
+  placeholder="Select specialization"
+  optionLabel="label"
+  class="form-control"
+></p-dropdown>
+  <small *ngIf="registerForm.get('specialization')?.invalid && registerForm.get('specialization')?.touched"  class="block p-error">
+    Specialization is required
+  </small>  
+</div> </div>
+<!-- University Name Field -->
+ <div class="row">
+<div class="col-md-4 mb-3" >
+<label for="uname" class="form-label mandatory-label">University Name</label>
+<input
+type="text"
+pInputText
+formControlName="uname"
+placeholder="Enter your university name"
+id="uname"
+class="form-control"
+required
+/>
+<small *ngIf="registerForm.get('uname')?.invalid && registerForm.get('uname')?.touched" class="block p-error">
+University Name is required
+</small>
+</div>   
+<div class="col-md-4 mb-3"></div> 
+<!-- Course Compeliton Field (DOB) -->
+<div class="col-md-4 mb-3">
+<label for="ccomp" class="form-label mandatory-label">Course Compelition</label>
+<p-calendar
+formControlName="ccomp"
+id="ccomp"
+dateFormat="mm/dd/yy"
+[showIcon]="true"
+placeholder="Select Course Compelition Date"
+class="form-control"
+></p-calendar>
+<small *ngIf="registerForm.get('ccomp')?.invalid && registerForm.get('ccomp')?.touched" class="block p-error">
+Course Compelition Date is required
+</small>
+</div>
+</div>
+<!-- Qualification Document Upload -->
+ <div class="row">
+<div class="col-md-4 mb-3">
+<label for="qualificationDocument" class="form-label mandatory-label">Attach Qualification Document</label>
+<input
+type="file"
+id="qualificationDocument"
+formControlName="qualificationDocument"
+accept="application/pdf, image/*"
+(change)="onFileChange($event)"
+class="w-full"
+/>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 mb-3">
+<label for="transcriptDocument" class="form-label mandatory-label">Attach Transcripts Document</label>
+<input
+type="file"
+id="transcriptDocument"
+formControlName="transcriptDocument"
+accept="application/pdf, image/*"
+(change)="onFileChange($event)"
+class="w-full"
+/>
+</div>
+</div> </div>
+</div>
+
+ <!-- Work Auth Field -->
+<div *ngIf="currentSection === 5" class="top-section">
+  <div class="top-header">
+    <h2>Work Authorization</h2>
+  </div>
+  <div class="top-content">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="workauth" class="form-label mandatory-label">Work Authorization Status</label>
+        <p-dropdown
+        [options]="workauths"
+        formControlName="workauth"
+        placeholder="Select Work Authorization Status"
+        optionLabel="label"
+        class="form-control"
+        (onChange)="onWorkAuthChange($event.value)"
+></p-dropdown>
+<small *ngIf="registerForm.get('workauth')?.invalid && registerForm.get('workauth')?.touched"  class="block p-error">
+Work Authorization is required
+</small>
+</div></div>
+<!-- Conditional Fields: USCIS Number, Valid From, Valid To, Attach Document -->
+<div *ngIf="showUscisFields">
+ <div class="row">
+  
+  <div class="col-md-4 mb-3">
+<label for="uscisNumber">USCIS Number</label>
+<input
+type="text"
+pInputText
+formControlName="uscisNumber"
+id="uscisNumber"
+placeholder="Enter USCIS Number"
+class="form-control"
+/>
+</div>
+<div class="col-md-4 mb-3">
+<label for="validFrom">Valid From</label>
+<p-calendar
+formControlName="validFrom"
+id="validFrom"
+dateFormat="mm/dd/yy"
+[showIcon]="true"
+placeholder="Select Start Date"
+class="form-control"
+></p-calendar>
+
+</div>
+<div class="col-md-4 mb-3">
+<label for="validTo">Valid To</label>
+<p-calendar
+formControlName="validTo"
+id="validTo"
+dateFormat="mm/dd/yy"
+placeholder="Select End Date"
+class="form-control"
+[showIcon]="true"
+></p-calendar>
+</div></div>
+<div class="row">
+<div class="col-md-4 mb-3">
+<label for="attachDoc">Attach Document</label>
+<input
+type="file"
+pInputFile
+formControlName="attachDoc"
+id="attachDoc"
+class="form-control"
+/>
+</div>
+</div></div>
+<div *ngIf="showAttachmentFields">
+<div class="row">
+<!-- First attachment field -->
+<div class="col-md-4 mb-3">
+<label for="i20">i20 Document </label>
+<input
+type="file"
+pInputText
+formControlName="i20"
+id="i20"
+class="form-control"
+/>
+</div></div>
+
+<!-- Second attachment field -->
+<div class="col-md-4 mb-3">
+<label for="CPTdoc">CPT Document </label>
+<input
+type="file"
+pInputText
+formControlName="CPTdoc"
+id="CPTdoc"
+class="form-control"
+/>
+</div>
+</div>  
+<div *ngIf="showJobDuties">
+<label for="jobDuties">Job Duties</label>
+<textarea
+formControlName="jobDuties"
+id="jobDuties"
+rows="5"
+placeholder="Enter Job Duties"
+class="form-control"
+></textarea>
+</div>
+
+<!-- Conditional Attachment Field for H1B -->
+<div *ngIf="showAttachmentField">
+<div class="col-md-4 mb-3">
+<label for="h1bdoc">Attach 797A Document</label>
+<input
+type="file"
+pInputText
+formControlName="h1bdoc"
+id="h1bdoc"
+class="form-control"
+/>
+</div>
+</div>
+<div *ngIf="showAttachmentField1">
+<div class="col-md-4 mb-3">
+<label for="i94doc">Attach i94 Document</label>
+<input
+type="file"
+pInputText
+formControlName="i94doc"
+id="i94doc"
+class="form-control"
+/>
+</div>
+</div>
+<div *ngIf="showAttachmentField2">
+<div class="col-md-4 mb-3">
+<label for="i9doc">Attach i9 Document</label>
+<input
+type="file"
+pInputText
+formControlName="i9doc"
+id="i9doc"
+class="form-control"
+/>
+</div>
+</div>
+</div></div>
+
+  <!-- Prev and Next Buttons -->
+  <div class="d-flex justify-content-between mt-4">
+            
+    <button *ngIf="currentSection > 1" type="button" class="btn btn-secondary btn-wide" (click)="prevSection()" [disabled]="currentSection === 1">
+       <i class="bi bi-chevron-left"></i> Prev   
+    </button>
+    <br><br>
+           
+    <button *ngIf="currentSection < 5" type="button" class="btn btn-primary btn-wide" (click)="nextSection()" [disabled]="currentSection === 5">
+      Next <i class="bi bi-chevron-right"></i>  
+    </button>
+
+    
+  </div>
+     
+  <br><br>
+  <div *ngIf="currentSection === 5"   >
+    <label>
+      <input type="checkbox" />
+        I Agree that the given data is correct
+    </label>
+    <br><br>
+    <p-button label="Register" type="submit" ></p-button>
+  </div>
+</form>    
+</p-card>  
+  
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
         <p class="mb-0">© 2024 ProBPM. All rights reserved.</p>
     </div>
 </footer>
-</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
