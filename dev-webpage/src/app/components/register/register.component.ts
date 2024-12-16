@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   selectedIdentityType: string = '';
   selectedFile: File | null = null;
   registerForm: FormGroup;
-  genders = ['Male', 'Female', 'Other'];
+  genders = [{label:'Male', value: 'M'}, {label:'Female', value: 'F'}, {label:'Other', value: 'O'}];
   qualifications = [
     { label: "Bachelor's", value: 'bachelor' },
     { label: "Master's", value: 'master' },
@@ -59,6 +59,7 @@ export class RegisterComponent implements OnInit {
       identityNumber: ['', [Validators.required]],
       expiryDate: ['', Validators.required],
       address: ['', Validators.required],
+      addressline2: ['', ],
       city: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
@@ -88,6 +89,7 @@ export class RegisterComponent implements OnInit {
     i9doc:[null, Validators.required],
     i94doc:[null, Validators.required],
     specialization: [null, Validators.required],
+    email: ['', [Validators.required, Validators.email]],
       });
   }
   onIdentityTypeChange(event: any) {
@@ -117,7 +119,7 @@ export class RegisterComponent implements OnInit {
       });
     }
     nextSection() {
-      if (this.currentSection < 5) {  // Assuming you have only 2 sections
+      if (this.currentSection < 6) {  // Assuming you have only 2 sections
         this.currentSection++;
         this.updateCurrentSection();
       }

@@ -2,53 +2,19 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive UI Template with Sticky Header</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+  <header class="bg-primary text-center py-5 ">
+    <div class="container">
+        <h1>Welcome to Onboarding Employee Portal!</h1>
+        <p class="lead">We’re excited to have you onboard! This platform is designed to make collecting and managing employee details simple and secure.</p>
+    </div>
+</header>
+  <body>
     <style>
         .form-label.mandatory-label {
             font-size: 1rem; /* Adjust size as needed */
             color: #333; /* Adjust color if needed */
         }
     </style>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="assets/Probpm Logo (PNG_Transparent).png" alt="ProBPM Logo" class="logo" style="height: 120px; width: 150px;">
-          </a>
-      
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Sticky Header Section -->
-<header class="bg-primary text-center py-5 ">
-    <div class="container">
-        <h1>Welcome to Onboarding Employee Portal!</h1>
-        <p class="lead">We’re excited to have you onboard! This platform is designed to make collecting and managing employee details simple and secure.</p>
-    </div>
-</header>
 
 <!-- Main Content -->
 
@@ -99,14 +65,17 @@
                   <!-- Gender Field -->
                   <div class="col-md-4 mb-4">
                     <label class="form-label mandatory-label">Gender</label>
-                    <div class="d-flex gap-2">
-                      <div *ngFor="let gender of ['Male', 'Female', 'Others']">
-                        <p-radioButton formControlName="gender" [inputId]="gender" [value]="gender" label="{{ gender }}"></p-radioButton>
-                      </div>
-                    </div>
+                    <div>   
+                    <p-dropdown
+                    [options]="genders"
+                    formControlName="gender"
+                    placeholder="Select Gender"
+                    optionLabel="label"
+                    class="w-100"
+                    ></p-dropdown>
                     <small *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="text-danger">
                       Gender is required
-                    </small>
+                    </small></div>
                   </div>
             
                   <!-- Date of Birth Field (DOB) -->
@@ -178,17 +147,19 @@
   [options]="identityTypes"
   placeholder="Select Identity Type"
   (onChange)="onIdentityTypeChange($event)"
-  class="form-control"
+  class="w-100"
 ></p-dropdown>
-</div></div>
+</div>
 
+<div class="col-md-4 mb-3"></div>
+</div>
 <!-- Identity Proof Fields -->
 <div *ngIf="selectedIdentityType !== 'Temporary Address'">
-
+  
 <!-- Driving License or State ID -->
-<div class="row">
+
   <div class="col-md-4 mb-3">
-  <label for="identityNumber" class="form-label mandatory-label">Identity Proof Number</label>
+  <label for="identityNumber" class="form-label mandatory-label">Identity Document Number</label>
   <input
     type="text"
     pInputText
@@ -204,24 +175,27 @@
 </div>
 
 <!-- Expiry Date -->
+ <div class="row">
 <div class="col-md-4 mb-3">
   <label for="expiryDate" class="form-label mandatory-label">Expiry Date</label>
+  <div>
   <p-calendar
     formControlName="expiryDate"
     id="expiryDate"
     dateFormat="mm/dd/yy"
     [showIcon]="true"
     placeholder="Select Expiry Date"
-    class="form-control"
+    class="fw-100"
   ></p-calendar>
   <small *ngIf="registerForm.get('expiryDate')?.invalid && registerForm.get('expiryDate')?.touched" class="text-danger">
     Please enter a valid Expiry Date 
   </small>
 </div>
+</div>
 
 <!-- Address Fields -->
 <div class="col-md-4 mb-3">
-  <label for="address" class="form-label mandatory-label">Address</label>
+  <label for="address" class="form-label mandatory-label">Address Line 1</label>
   <input
     type="text"
     pInputText
@@ -234,6 +208,19 @@
   <small *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched" class="text-danger">
     Please enter a valid Address
   </small>
+</div>
+<div class="col-md-4 mb-3">
+  <label for="addressline2" class="form-label">Address Line 2</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="addressline2"
+    id="address"
+    class="form-control"
+    placeholder="Enter Address Line2"
+    required
+  />
+
 </div>
 </div>
 <div class="row">
@@ -324,7 +311,7 @@
 <!-- Address Fields (same as above) -->
  <div class="row">
 <div class="col-md-4 mb-3">
-  <label for="address" class="form-label mandatory-label">Address</label>
+  <label for="address" class="form-label mandatory-label">Address Line 1</label>
   <input
     type="text"
     pInputText
@@ -336,7 +323,17 @@
   />
 </div>
 <div class="col-md-4 mb-3">
-  <!-- Empty space -->
+  <label for="addressline2" class="form-label">Address Line 2</label>
+  <input
+    type="text"
+    pInputText
+    formControlName="addressline2"
+    id="address"
+    class="form-control"
+    placeholder="Enter Address Line2"
+    required
+  />
+
 </div>
 <div class="col-md-4 mb-3 ">
   <label for="city" class="form-label mandatory-label">City</label>
@@ -396,8 +393,255 @@
 </div>
 </div>
 </div>
-
 <div *ngIf="currentSection === 3" class="top-section">
+  <div class="top-header">
+    <h2>Emergency Contact Details</h2>
+  </div>
+  <div class="top-content">
+    <div>
+    <div class="row"> 
+        <!--  Name Field -->
+        <div class="col-md-4 mb-3">
+          <label for="lname" class="form-label mandatory-label">Full Name</label>
+          <input type="text" pInputText formControlName="lname" placeholder="Enter your name" id="lname" 
+                 class="form-control" required />
+          <small *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
+            Name is required
+          </small>
+        </div>
+    
+  
+        <!-- Mobile Number Field -->
+        <div class="col-md-4 mb-3">
+          <label for="mobile" class="form-label mandatory-label">Mobile Number</label>
+          <input type="tel" pInputText formControlName="mobile" id="mobile" placeholder="Enter mobile number" 
+                 class="form-control" required pattern="[0-9]{10}" />
+          <small *ngIf="registerForm.get('mobile')?.invalid && registerForm.get('mobile')?.touched" class="text-danger">
+            Please enter a valid mobile number
+          </small>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="email" class="form-label  mandatory-label">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+          <div *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid" class="text-danger">
+            <div *ngIf="registerForm.controls['email'].errors?.['required']">Email is required.</div>
+            <div *ngIf="registerForm.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+          </div>
+        </div>
+      </div>
+ 
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label for="address" class="form-label mandatory-label">Address Line 1</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="address"
+        id="address"
+        class="form-control"
+        placeholder="Enter Address"
+        required
+      />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="addressline2" class="form-label">Address Line 2</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="addressline2"
+        id="address"
+        class="form-control"
+        placeholder="Enter Address Line2"
+        required
+      />
+    
+    </div>
+    <div class="col-md-4 mb-3 ">
+      <label for="city" class="form-label mandatory-label">City</label>
+        <input
+        type="text"
+        pInputText
+        formControlName="city"
+        id="city"
+        class="form-control"
+        placeholder="Enter City"
+        required
+      />
+    </div>
+    </div>  
+    <div class="row" >
+    <div class="col-md-4 mb-3">
+      <label for="state" class="form-label mandatory-label">State</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="state"
+        id="state"
+        class="form-control"
+        placeholder="Enter State"
+        required
+      />
+    </div>
+    
+    <div class="col-md-4 mb-3">
+      <label for="country" class="form-label mandatory-label">Country</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="country"
+        id="country"
+        class="form-control"
+        placeholder="Enter Country"
+        required
+      />
+    </div>
+    
+      <div class="col-md-4 mb-3">
+      <label for="pincode" class="form-label mandatory-label">Pincode</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="pincode"
+        id="pincode"
+        class="form-control"
+        placeholder="Enter Pincode"
+        required
+      />
+    </div>
+    
+    </div>
+    </div>
+    <div class="top-header"></div>
+    <div>
+      <div class="row"> 
+          <!--  Name Field -->
+          <div class="col-md-4 mb-3">
+            <label for="lname" class="form-label mandatory-label">Full Name (2nd Contact)</label>
+            <input type="text" pInputText formControlName="lname" placeholder="Enter your name" id="lname" 
+                   class="form-control" required />
+            <small *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
+              Name is required
+            </small>
+          </div>
+      
+    
+          <!-- Mobile Number Field -->
+          <div class="col-md-4 mb-3">
+            <label for="mobile" class="form-label mandatory-label">Mobile Number</label>
+            <input type="tel" pInputText formControlName="mobile" id="mobile" placeholder="Enter mobile number" 
+                   class="form-control" required pattern="[0-9]{10}" />
+            <small *ngIf="registerForm.get('mobile')?.invalid && registerForm.get('mobile')?.touched" class="text-danger">
+              Please enter a valid mobile number
+            </small>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="email" class="form-label  mandatory-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Enter your email"
+            />
+            <div *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid" class="text-danger">
+              <div *ngIf="registerForm.controls['email'].errors?.['required']">Email is required.</div>
+              <div *ngIf="registerForm.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+            </div>
+          </div>
+        </div>
+   
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="address" class="form-label mandatory-label">Address Line 1</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="address"
+          id="address"
+          class="form-control"
+          placeholder="Enter Address"
+          required
+        />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="addressline2" class="form-label">Address Line 2</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="addressline2"
+          id="address"
+          class="form-control"
+          placeholder="Enter Address Line2"
+          required
+        />
+      
+      </div>
+      <div class="col-md-4 mb-3 ">
+        <label for="city" class="form-label mandatory-label">City</label>
+          <input
+          type="text"
+          pInputText
+          formControlName="city"
+          id="city"
+          class="form-control"
+          placeholder="Enter City"
+          required
+        />
+      </div>
+      </div>  
+      <div class="row" >
+      <div class="col-md-4 mb-3">
+        <label for="state" class="form-label mandatory-label">State</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="state"
+          id="state"
+          class="form-control"
+          placeholder="Enter State"
+          required
+        />
+      </div>
+      
+      <div class="col-md-4 mb-3">
+        <label for="country" class="form-label mandatory-label">Country</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="country"
+          id="country"
+          class="form-control"
+          placeholder="Enter Country"
+          required
+        />
+      </div>
+      
+        <div class="col-md-4 mb-3">
+        <label for="pincode" class="form-label mandatory-label">Pincode</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="pincode"
+          id="pincode"
+          class="form-control"
+          placeholder="Enter Pincode"
+          required
+        />
+      </div>
+    </div></div>
+  </div></div>
+
+
+
+
+
+<div *ngIf="currentSection === 4" class="top-section">
   <div class="top-header">
     <h2>Passport Details</h2>
   </div>
@@ -423,24 +667,26 @@
 <!-- Expiry Date -->
 <div class="col-md-4 mb-3">
 <label for="passportexpiryDate" class="form-label mandatory-label">Passport Expiry Date</label>
+<div>
 <p-calendar
     formControlName="passportexpiryDate"
     id="passportexpiryDate"
     dateFormat="mm/dd/yy"
     [showIcon]="true"
     placeholder="Select Expiry Date"
-    class="form-control"
+    class="w-100"
   ></p-calendar>
   <small *ngIf="registerForm.get('passportexpiryDate')?.invalid && registerForm.get('passportexpiryDate')?.touched" class="text-danger">
     Please enter a valid Passport Expiry Date 
   </small>
 </div>
 </div>
+</div>
 
 <!-- Address Fields (same as above) -->
 <div class="row">
   <div class="col-md-4 mb-3">
-    <label for="passportaddress" class="mandatory-label">Address</label>
+    <label for="passportaddress" class="mandatory-label">Address Line 1</label>
     <input
       type="text"
       pInputText
@@ -455,7 +701,17 @@
     </small>
   </div>
   <div class="col-md-4 mb-3">
-    <!-- Empty space -->
+    <label for="addressline2" class="form-label">Address Line 2</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="addressline2"
+      id="address"
+      class="form-control"
+      placeholder="Enter Address Line2"
+      required
+    />
+  
   </div>
   <div class="col-md-4 mb-3 ">
     <label for="passportcity" class="mandatory-label">City</label>
@@ -540,7 +796,7 @@
 </div>
 
 <!-- Qualification Field -->
-<div *ngIf="currentSection === 4" class="top-section">
+<div *ngIf="currentSection === 5" class="top-section">
   <div class="top-header">
     <h2>Academic Details</h2>
   </div>
@@ -553,7 +809,7 @@
         formControlName="qualification"
         placeholder="Select Qualification"
         optionLabel="label"
-        class="form-control"
+        class="w-100"
         (onChange)="onQualificationChange()"
 ></p-dropdown>
   <small *ngIf="registerForm.get('qualification')?.invalid && registerForm.get('qualification')?.touched"  class="block p-error">
@@ -568,7 +824,7 @@
   formControlName="specialization"
   placeholder="Select specialization"
   optionLabel="label"
-  class="form-control"
+  class="w-100"
 ></p-dropdown>
   <small *ngIf="registerForm.get('specialization')?.invalid && registerForm.get('specialization')?.touched"  class="block p-error">
     Specialization is required
@@ -595,17 +851,19 @@ University Name is required
 <!-- Course Compeliton Field (DOB) -->
 <div class="col-md-4 mb-3">
 <label for="ccomp" class="form-label mandatory-label">Course Compelition</label>
+<div>
 <p-calendar
 formControlName="ccomp"
 id="ccomp"
 dateFormat="mm/dd/yy"
 [showIcon]="true"
 placeholder="Select Course Compelition Date"
-class="form-control"
+class="w-100"
 ></p-calendar>
 <small *ngIf="registerForm.get('ccomp')?.invalid && registerForm.get('ccomp')?.touched" class="block p-error">
 Course Compelition Date is required
 </small>
+</div>
 </div>
 </div>
 <!-- Qualification Document Upload -->
@@ -638,7 +896,7 @@ class="w-full"
 </div>
 
  <!-- Work Auth Field -->
-<div *ngIf="currentSection === 5" class="top-section">
+<div *ngIf="currentSection === 6" class="top-section">
   <div class="top-header">
     <h2>Work Authorization</h2>
   </div>
@@ -651,7 +909,7 @@ class="w-full"
         formControlName="workauth"
         placeholder="Select Work Authorization Status"
         optionLabel="label"
-        class="form-control"
+        class="w-100"
         (onChange)="onWorkAuthChange($event.value)"
 ></p-dropdown>
 <small *ngIf="registerForm.get('workauth')?.invalid && registerForm.get('workauth')?.touched"  class="block p-error">
@@ -675,27 +933,29 @@ class="form-control"
 </div>
 <div class="col-md-4 mb-3">
 <label for="validFrom">Valid From</label>
+<div>
 <p-calendar
 formControlName="validFrom"
 id="validFrom"
 dateFormat="mm/dd/yy"
 [showIcon]="true"
 placeholder="Select Start Date"
-class="form-control"
-></p-calendar>
+class="w-100"
+></p-calendar></div>
 
 </div>
 <div class="col-md-4 mb-3">
 <label for="validTo">Valid To</label>
+<div>
 <p-calendar
 formControlName="validTo"
 id="validTo"
 dateFormat="mm/dd/yy"
 [showIcon]="true"
 placeholder="Select End Date"
-class="form-control"
+class="w-100"
 
-></p-calendar>
+></p-calendar></div>
 </div></div>
 <div class="row">
 <div class="col-md-4 mb-3">
@@ -793,7 +1053,7 @@ class="form-control"
     </button>
     <br><br>
            
-    <button *ngIf="currentSection < 5" type="button" class="btn btn-primary btn-wide" (click)="nextSection()" [disabled]="currentSection === 5">
+    <button *ngIf="currentSection < 6" type="button" class="btn btn-primary btn-wide" (click)="nextSection()" [disabled]="currentSection === 6">
       Next <i class="bi bi-chevron-right"></i>  
     </button>
 
@@ -801,7 +1061,7 @@ class="form-control"
   </div>
      
   <br><br>
-  <div *ngIf="currentSection === 5"   >
+  <div *ngIf="currentSection === 6"   >
     <label>
       <input type="checkbox" />
         I Agree that the given data is correct
@@ -811,13 +1071,7 @@ class="form-control"
   </div>
 </form>    
 </p-card>  
-  
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-    <div class="container">
-        <p class="mb-0">© 2024 ProBPM. All rights reserved.</p>
-    </div>
-</footer>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

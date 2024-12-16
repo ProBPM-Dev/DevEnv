@@ -33,6 +33,14 @@ body {
   .logo {
       width: 100px; /* Smaller logo for mobile screens */
   }
+  .page-content {
+    grid-template-rows: 1fr 1fr; /* Keep the same grid layout but adjust padding */
+    gap: 10px;
+  }
+
+  .top-section, .bottom-section {
+    padding: 20px; /* Reduce padding for smaller screens */
+  }
 }
 
 @media (max-width: 480px) {
@@ -53,6 +61,25 @@ body {
   to {
       opacity: 1;
   }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures it stays on top */
+  background-color: #fff; /* Background color of the navbar */
+  box-shadow: 0 4px 2px -2px gray; /* Optional: Adds a shadow effect */
+}
+
+/* Optional: Styling the logo for better alignment */
+.navbar-brand img {
+  height: 100px;
+  width: 150px;
+}
+
+/* Optional: Styling for the navbar items */
+.navbar-nav .nav-item {
+  margin-right: 10px; /* Adds space between nav items */
 }
 
 .align-items-center {
@@ -113,24 +140,6 @@ body {
   outline: none; /* Remove default focus outline */
 }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* Ensures it stays on top */
-  background-color: #fff; /* Background color of the navbar */
-  box-shadow: 0 4px 2px -2px gray; /* Optional: Adds a shadow effect */
-}
-
-/* Optional: Styling the logo for better alignment */
-.navbar-brand img {
-  height: 100px;
-  width: 150px;
-}
-
-/* Optional: Styling for the navbar items */
-.navbar-nav .nav-item {
-  margin-right: 10px; /* Adds space between nav items */
-}
 
 .mandatory-label::after {
   content: " *"; /* Add a star after the label */
@@ -173,30 +182,6 @@ body {
 /* Optional: Adjust padding for space around icon */
 .small-icon-input.p-inputtext {
   padding-right: 2rem; /* Space for icon */
-}
-@media (max-width: 768px) {
-  .page-content {
-    grid-template-rows: 1fr 1fr; /* Keep the same grid layout but adjust padding */
-    gap: 10px;
-  }
-
-  .top-section, .bottom-section {
-    padding: 20px; /* Reduce padding for smaller screens */
-  }
-
-  .top-section h2, .bottom-section h2 {
-    font-size: 1.5rem; /* Smaller header text on mobile */
-  }
-
-  .logo {
-    width: 100px; /* Smaller logo on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    width: 90px; /* Further reduce logo size */
-  }
 }
 
 .form-description {
