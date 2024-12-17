@@ -16,9 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { ProbpmEmpdataformComponent } from './components/probpm-empdataform/probpm-empdataform.component';
 @NgModule({
-  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent,ProbpmEmpdataformComponent ],
+  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
