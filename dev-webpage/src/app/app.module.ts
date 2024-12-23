@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
@@ -13,11 +13,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { RadioButtonModule } from 'primeng/radiobutton'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 @NgModule({
-  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent ],
+  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent, EmployeeDetailsComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CardModule,
     RadioButtonModule,
     CalendarModule  ,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

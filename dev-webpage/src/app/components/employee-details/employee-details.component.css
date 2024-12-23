@@ -1,0 +1,259 @@
+
+
+main {
+  padding: 20px;
+  animation: fadeIn 1s ease-in; /* Fade in animation */
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Button styles */
+button {
+  background-color:1px solid #ccc; /* Primary color */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background-color: #007bff; /* Highlight color on hover */
+  transform: scale(1.01); /* Optional: Adds a slight scaling effect on hover */
+}
+
+button:active {
+  transform: scale(1); /* Reset scale on click */
+}
+
+/* Hiding default arrow */
+.dropdown-toggle::after {
+  display: none;
+}
+
+/* Custom arrow style if needed */
+.dropdown-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem; /* Adjust size as needed */
+  pointer-events: none;
+}
+
+/* Form styles */
+.form-label, .form-control {
+  font-size: 1rem; /* Adjust as needed */
+}
+
+@media (max-width: 768px) {
+  .form-label, .form-control {
+    font-size: 0.9rem; /* Smaller font for mobile screens */
+  }
+}
+
+.h5 { 
+  font-size: 2rem; /* Adjust size as needed */
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between form fields */
+  padding: 20px;
+}
+
+.dropdown-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem; /* Adjust font size if needed */
+  padding: 0.75rem 1rem;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-menu {
+  position: relative;
+  top: 100%; /* Position below the button */
+  left: 0;
+  right: 0;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f0f0f0; /* Light gray background */
+  max-height: 350px; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 100%;
+  z-index: 1050; 
+}
+
+.dropdown-menu.show {
+  display: block; /* Show the menu when active */
+}
+
+.dropdown-menu li {
+  padding: 5px 5px; /* Padding inside each item */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0; /* Slightly darker background on hover */
+}
+
+  .text-start {
+    text-align: left !important;
+  }
+  
+.container1 {
+  display: grid;
+  grid-template-rows: auto 1fr 1fr; /* Three rows: header, top-section, bottom-section */
+  padding: 10px;
+  gap: 10px; /* Space between rows */
+}
+
+.radio-group {
+  display: flex;
+  gap: 1rem; /* Space between individual radio buttons */
+}
+
+
+
+.small-icon-input {
+  width: 400px; /* Adjust width as per your requirement */
+  font-size: 30px; /* Adjust font size */
+}
+
+/* Target icon size inside the input fields */
+.small-icon-input ::ng-deep .pi {
+  font-size: 0.8em; /* Reduce icon size */
+  width: 1em;
+  height: 1em;
+}
+
+/* Optional: Adjust padding for space around icon */
+.small-icon-input.p-inputtext {
+  padding-right: 2rem; /* Space for icon */
+}
+
+.form-description {
+  font-size: 0.875rem;  /* Smaller font size */
+  color: #6c757d;  /* Light gray color */
+  margin-top: 5px;  /* Space between label and description */
+  }
+  
+.mandatory-label::after {
+  content: " *"; /* Add a star after the label */
+  color: red; /* Red color for the * symbol */
+  font-weight: bold; /* Bold the star */
+}
+.container {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+.top {
+  background-color: #f0f0f0; /* Light gray background */  
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form fields */
+  padding: 10px;
+  
+}
+
+.top label {
+  font-size: 1.2rem;
+  font-weight: 600; /* Stronger label font */
+}
+
+.top input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.3s ease; /* Smooth border transition */
+}
+
+/* Input hover/focus effect */
+.top input:hover,
+.top input:focus {
+  border-color: #4CAF50; /* Green border on hover/focus */
+  outline: none; /* Remove default focus outline */
+}
+.large-icon {
+  font-size: 2rem; /* Large dropdown arrow icon */
+  margin-right: auto;
+  transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
+.text-start {
+  text-align: left !important;
+}
+
+
+.gg-chevron-up {
+  box-sizing: border-box;
+  position: relative;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 100px;
+}
+.gg-chevron-up::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(-45deg);
+  right: 550px;
+ top: -5px;
+}
+
+.gg-chevron-down {
+  box-sizing: border-box;
+  position: relative;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 100px;
+}
+
+.gg-chevron-down::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(45deg);
+  right: 555px;
+  bottom: 33px; 
+}
+

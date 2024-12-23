@@ -1,0 +1,422 @@
+
+  <form [formGroup]="employeeForm" >
+       
+    <div class="container-fluid mt-3" >
+      <div class="row justify-content-center">
+    <div class="col-12">
+      <div  (click)="isOpen = !isOpen" class="dropdown w-100" style="position: relative;">
+        <button
+          class="btn btn-secondary dropdown-toggle w-100 "
+          type="button"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          (click)="toggleDropdown('employee')"
+        ><h5 class="text-start ">Employee Details</h5>
+        <i [ngClass]="isOpen ? 'gg-chevron-up' : 'gg-chevron-down'"></i>
+        </button>
+  
+          <div *ngIf="isDropdownOpen('employee')" class="dropdown-menu p-4 w-100" aria-labelledby="dropdownMenuButton" style="position: relative; z-index: 1000;">
+            <!-- Employee details content here -->
+                              <div class="top">   
+                <div class="row">
+
+                  <!-- First Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="fname" class="form-label mandatory-label">First Name</label>
+                    <input type="text" pInputText formControlName="fname" placeholder="Enter your first name" id="fname" 
+                           class="form-control" required />
+                    <small *ngIf="employeeForm.get('fname')?.invalid && employeeForm.get('fname')?.touched" class="text-danger">
+                      First Name is required
+                    </small>
+                  </div>
+            
+                  <!-- Middle Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="mname" class="form-label">Middle Name</label>
+                    <input type="text" pInputText formControlName="mname" placeholder="Enter your middle name" id="mname" 
+                           class="form-control" />
+                  </div>
+            
+                  <!-- Last Name Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="lname" class="form-label mandatory-label">Last Name</label>
+                    <input type="text" pInputText formControlName="lname" placeholder="Enter your last name" id="lname" 
+                           class="form-control" required />
+                    <small *ngIf="employeeForm.get('lname')?.invalid && employeeForm.get('lname')?.touched" class="text-danger">
+                      Last Name is required
+                    </small>
+                  </div>
+                </div>
+            
+        <div class="row">
+                  <!-- Gender Field -->
+                  <div class="col-md-4 mb-4">
+                    <label class="form-label mandatory-label">Gender</label>
+                    <div>   
+                    <p-dropdown
+                    [options]="genders"
+                    formControlName="gender"
+                    placeholder="Select Gender"
+                    optionLabel="label"
+                    class="w-100"
+                    ></p-dropdown>
+                    <small *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched" class="text-danger">
+                      Gender is required
+                    </small></div>
+                  </div>                
+                              
+                  <!-- Date of Birth Field (DOB) -->
+                  
+                  <div class="col-md-4 mb-3">
+                    <label for="dob" class="form-label mandatory-label ">Date of Birth</label>
+                    <br>
+                    <!-- Removed form-control class here -->
+                    <p-calendar 
+                      formControlName="dob" 
+                      id="dob" 
+                      dateFormat="mm/dd/yy" 
+                      [showIcon]="true" 
+                      placeholder="Select Date of Birth"
+                      class="w-50">
+                    </p-calendar>
+                    <br>
+                    <small *ngIf="employeeForm.get('dob')?.invalid && employeeForm.get('dob')?.touched" class="text-danger">
+                      Date of Birth is required
+                    </small>
+                  </div>
+                  
+               
+            
+                  <!-- Mobile Number Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="mobile" class="form-label mandatory-label">Mobile Number</label>
+                    <input type="tel" pInputText formControlName="mobile" id="mobile" placeholder="Enter mobile number" 
+                           class="form-control" required pattern="[0-9]{10}" />
+                    <small *ngIf="employeeForm.get('mobile')?.invalid && employeeForm.get('mobile')?.touched" class="text-danger">
+                      Please enter a valid mobile number
+                    </small>
+                  </div>
+            </div>
+            
+        <div class="row">
+                  <!-- SSN Number Field -->
+                  <div class="col-md-4 mb-3">
+                    <label for="ssn" class="form-label mandatory-label">SSN Number</label>
+                    <input type="tel" pInputText formControlName="ssn" id="ssn" placeholder="Enter SSN number (123-45-6789)" 
+                           class="form-control" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" />
+                    <small *ngIf="employeeForm.get('ssn')?.invalid && employeeForm.get('ssn')?.touched" class="text-danger">
+                      Please enter a valid SSN number
+                    </small>
+                 </div>
+                </div>
+
+            </div>   
+        </div>  
+      </div>
+<br>
+<br>   
+   <div  (click)="isOpen1 = !isOpen1" class="dropdown w-100  mt-4">
+        <button
+          class="btn btn-secondary dropdown-toggle w-100 "
+          type="button"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="true"
+          (click)="toggleDropdown('identity')"
+        ><h5 class="text-start ">Identity Details</h5>
+        <i [ngClass]="isOpen1 ? 'gg-chevron-up' : 'gg-chevron-down'"></i>
+        </button>
+        <div *ngIf="isDropdownOpen('identity')" class="dropdown-menu p-4 w-100" aria-labelledby="dropdownMenuButton">
+              <div class="top">   
+            
+<!-- Driving License or State ID -->
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <label for="identityNumber" class="form-label mandatory-label">Identity Document Number</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="identityNumber"
+      placeholder="Enter Identity Proof Number"
+      id="identityNumber"
+      class="form-control"
+      required
+    />
+    <small *ngIf="employeeForm.get('identityNumber')?.invalid && employeeForm.get('identityNumber')?.touched" class="text-danger">
+      Please enter a valid Identity-Number 
+    </small>
+  </div>
+  
+  <!-- Expiry Date -->
+
+  <div class="col-md-4 mb-3">
+    <label for="expiryDate" class="form-label mandatory-label">Expiry Date</label>
+    <div>
+    <p-calendar
+      formControlName="expiryDate"
+      id="expiryDate"
+      dateFormat="mm/dd/yy"
+      [showIcon]="true"
+      placeholder="Select Expiry Date"
+      class="fw-100"
+    ></p-calendar>
+    <small *ngIf="employeeForm.get('expiryDate')?.invalid && employeeForm.get('expiryDate')?.touched" class="text-danger">
+      Please enter a valid Expiry Date 
+    </small>
+  </div>
+  </div>
+  
+  <!-- Address Fields -->
+  <div class="col-md-4 mb-3">
+    <label for="address" class="form-label mandatory-label">Address Line 1</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="address"
+      id="address"
+      class="form-control"
+      placeholder="Enter Address"
+      required
+    />
+    <small *ngIf="employeeForm.get('address')?.invalid && employeeForm.get('address')?.touched" class="text-danger">
+      Please enter a valid Address
+    </small>
+  </div></div>
+  <div class="row">
+  <div class="col-md-4 mb-3">
+    <label for="addressline2" class="form-label">Address Line 2</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="addressline2"
+      id="address"
+      class="form-control"
+      placeholder="Enter Address Line2"
+      required
+    />
+  
+  </div>
+  
+  <div class="col-md-4 mb-3">
+    <label for="city" class="form-label mandatory-label">City</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="city"
+      id="city"
+      class="form-control"
+      placeholder="Enter City"
+      required
+    />
+    <small *ngIf="employeeForm.get('city')?.invalid && employeeForm.get('city')?.touched" class="text-danger">
+      Please enter a valid City
+    </small>
+  </div>
+  
+  <div class="col-md-4 mb-3">
+    <label for="state" class="form-label mandatory-label">State</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="state"
+      id="state"
+      class="form-control"
+      placeholder="Enter State"
+      required
+    />
+    <small *ngIf="employeeForm.get('state')?.invalid && employeeForm.get('state')?.touched" class="text-danger">
+      Please enter a valid State
+    </small>
+  </div></div>
+  <div class="row">
+  <div class="col-md-4 mb-3">
+    <label for="country" class="form-label mandatory-label">Country</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="country"
+      id="country"
+      class="form-control"
+      placeholder="Enter Country"
+      required
+    />
+    <small *ngIf="employeeForm.get('country')?.invalid && employeeForm.get('country')?.touched" class="text-danger">
+      Please enter a valid Country
+    </small>
+  </div>
+  <div class="col-md-4 mb-3"></div>
+    <div class="col-md-4 mb-3">
+    <label for="pincode" class="form-label mandatory-label">Pincode</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="pincode"
+      id="pincode"
+      class="form-control"
+      placeholder="Enter Pincode"
+      required
+    />
+    <small *ngIf="employeeForm.get('pincode')?.invalid && employeeForm.get('pincode')?.touched" class="text-danger">
+      Please enter a valid Pincode
+    </small>
+  </div>
+  </div>            </div>   
+        </div>
+      </div>
+<br>
+<br>   
+   <div  (click)="isOpen2 = !isOpen2" class="dropdown w-100  mt-4">
+        <button
+          class="btn btn-secondary dropdown-toggle w-100 "
+          type="button"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="true"
+          (click)="toggleDropdown('passport')"
+        ><h5 class="text-start ">Passport Details</h5>
+        <i [ngClass]="isOpen2 ? 'gg-chevron-up' : 'gg-chevron-down'"></i>
+        </button>
+        <div *ngIf="isDropdownOpen('passport')" class="dropdown-menu p-4 w-100" aria-labelledby="dropdownMenuButton">
+              <div class="top">   
+                <div class="row"> 
+                  <!-- Passport Number -->
+                  <div class="col-md-4 mb-3">
+                  <label for="passportNumber" class="form-label mandatory-label">Passport Number</label>
+                  <input
+                    type="text"
+                    pInputText
+                    formControlName="passportNumber"
+                    placeholder="Enter Passport Number"
+                    id="passportNumber"
+                    class="form-control"
+                    required
+                  />
+                  <small *ngIf="employeeForm.get('passportNumber')?.invalid && employeeForm.get('passportNumber')?.touched" class="text-danger">
+                    Please enter a valid Passport-Number 
+                  </small>
+            </div>
+            <div class="col-md-4 mb-3"></div>
+            <!-- Expiry Date -->
+            <div class="col-md-4 mb-3">
+            <label for="passportexpiryDate" class="form-label mandatory-label">Passport Expiry Date</label>
+            <div>
+            <p-calendar
+                formControlName="passportexpiryDate"
+                id="passportexpiryDate"
+                dateFormat="mm/dd/yy"
+                [showIcon]="true"
+                placeholder="Select Expiry Date"
+                class="w-100"
+              ></p-calendar>
+              <small *ngIf="employeeForm.get('passportexpiryDate')?.invalid && employeeForm.get('passportexpiryDate')?.touched" class="text-danger">
+                Please enter a valid Passport Expiry Date 
+              </small>
+            </div>
+            </div>
+            </div>
+            
+            <!-- Address Fields (same as above) -->
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="passportaddress" class="mandatory-label">Address Line 1</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="passportaddress"
+                  id="passportaddress"
+                  class="form-control"
+                  placeholder="Enter Address"
+                  required
+                />
+                <small *ngIf="employeeForm.get('passportaddress')?.invalid && employeeForm.get('passportaddress')?.touched" class="text-danger">
+                  Please enter a valid Passport Address
+                </small>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="addressline2" class="form-label">Address Line 2</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="addressline2"
+                  id="address"
+                  class="form-control"
+                  placeholder="Enter Address Line2"
+                  required
+                />
+              
+              </div>
+              <div class="col-md-4 mb-3 ">
+                <label for="passportcity" class="mandatory-label">City</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="passportcity"
+                  id="passportcity"
+                  class="form-control"
+                  placeholder="Enter City"
+                  required
+                />
+                <small *ngIf="employeeForm.get('passportcity')?.invalid && employeeForm.get('passportcity')?.touched" class="text-danger">
+                  Please enter a valid City
+                </small>
+              </div>
+              </div>  
+              <div class="row" >
+              <div class="col-md-4 mb-3">
+                <label for="passportstate" class="form-label mandatory-label">State</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="passportstate"
+                  id="passportstate"
+                  class="form-control"
+                  placeholder="Enter State"
+                  required
+                />
+                <small *ngIf="employeeForm.get('passportstate')?.invalid && employeeForm.get('passportstate')?.touched" class="text-danger">
+                  Please enter a valid State 
+                </small>
+              </div>
+              
+              <div class="col-md-4 mb-3">
+                <label for="passportcountry" class="form-label mandatory-label">Country</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="passportcountry"
+                  id="passportcountry"
+                  class="form-control"
+                  placeholder="Enter Country"
+                  required
+                />
+                <small *ngIf="employeeForm.get('passportcountry')?.invalid && employeeForm.get('passportcountry')?.touched" class="text-danger">
+                  Please enter a valid Country 
+                </small>
+              </div>
+              
+                <div class="col-md-4 mb-3">
+                  <label for="passportpincode" class="form-label mandatory-label">Pincode</label>
+                  <input
+                    type="text"
+                    pInputText
+                    formControlName="passportpincode"
+                    id="passportpincode"
+                    class="form-control"
+                    placeholder="Enter Pincode"
+                    required
+                  />
+                  <small *ngIf="employeeForm.get('passportpincode')?.invalid && employeeForm.get('passportpincode')?.touched" class="text-danger">
+                    Please enter a valid Pincode 
+                  </small>
+              </div>
+              </div>
+               
+            </div>   
+        </div>
+      </div>
+
+
+    </div></div>
+  </div>
+  </form>

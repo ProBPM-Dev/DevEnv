@@ -1,22 +1,21 @@
-
-  footer {
-    margin-top: 30px;
-    background-color: #f8f9fa;
-  }
-  
-.container {
-  opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
+footer {
+  margin-top: 30px;
+  background-color: #d9d9d9; /* Slightly darker gray background */
+  color: #333; /* Text color */
+  font-size: 16px; /* Adjust font size */
+  padding: 1rem 0; /* Vertical padding */
 }
 
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
+.social-icons i {
+  font-size: 32px; /* Custom icon size */
+  transition: all 0.3s ease;
 }
 
+.social-icons i:hover {
+  color: #007bff; /* Change icon color on hover */
+}
 
-  
+/* Optional: Adjust spacing between the icons */
+.social-icons a {
+  margin-right: 15px;
+}

@@ -1,4 +1,7 @@
 /* Logo styling */
+.nav{
+  background-color: #c5c3c3;
+}
 .logo {
     width: 150px; /* Control the size of the logo */
     height: auto; /* Maintain aspect ratio */
