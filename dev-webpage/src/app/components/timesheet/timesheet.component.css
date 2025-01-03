@@ -1,0 +1,170 @@
+/* Main container animation */
+main {
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Page container styles */
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Heading styles */
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Form group styles */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  input, select, textarea {
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    transition: border-color 0.2s;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Table styles */
+  .table {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .table thead th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #0056b3;
+  }
+  
+  .table td, .table th {
+    vertical-align: middle;
+    padding: 0.75rem;
+  }
+  
+  .table .form-control {
+    border: none;
+    box-shadow: none;
+    transition: border 0.2s ease;
+  }
+  
+  .table .form-control:focus {
+    border: 1px solid #007bff;
+  }
+  
+  /* Button styles */
+  .btn-submit {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+  }
+  
+  .btn-submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+  }
+  
+  /* Accessible focus states */
+  input:focus, select:focus, textarea:focus, button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+  
+  /* High contrast for better readability */
+  body {
+    color: #333;
+    background-color: #f8f9fa;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  input, select, textarea {
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    transition: border-color 0.2s;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+.table-responsive .btn-prev,
+.table-responsive .btn-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.table-responsive .btn-prev {
+  left: 0;
+}
+
+.table-responsive .btn-next {
+  right: 0;
+}
+
+  

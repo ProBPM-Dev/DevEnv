@@ -13,12 +13,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { RadioButtonModule } from 'primeng/radiobutton'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 @NgModule({
-  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent, EmployeeDetailsComponent ],
+  declarations: [  AppComponent, RegisterComponent, FooterComponent, NavbarComponent, EmployeeDetailsComponent, TimesheetComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
